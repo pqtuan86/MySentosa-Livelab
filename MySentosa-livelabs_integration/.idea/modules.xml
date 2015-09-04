@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/FlurryAgent/FlurryAgent.iml" filepath="$PROJECT_DIR$/FlurryAgent/FlurryAgent.iml" />
+      <module fileurl="file://$PROJECT_DIR$/MySentosa-livelabs_integration.iml" filepath="$PROJECT_DIR$/MySentosa-livelabs_integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/app/app.iml" filepath="$PROJECT_DIR$/app/app.iml" />
+      <module fileurl="file://$PROJECT_DIR$/integration/integration.iml" filepath="$PROJECT_DIR$/integration/integration.iml" />
+      <module fileurl="file://$PROJECT_DIR$/libGoogleAnalyticsServices_3.01/libGoogleAnalyticsServices_3.01.iml" filepath="$PROJECT_DIR$/libGoogleAnalyticsServices_3.01/libGoogleAnalyticsServices_3.01.iml" />
+      <module fileurl="file://$PROJECT_DIR$/osmdroid_sentosa/osmdroid_sentosa.iml" filepath="$PROJECT_DIR$/osmdroid_sentosa/osmdroid_sentosa.iml" />
+      <module fileurl="file://$PROJECT_DIR$/urbanairship-lib-3.1.0/urbanairship-lib-3.1.0.iml" filepath="$PROJECT_DIR$/urbanairship-lib-3.1.0/urbanairship-lib-3.1.0.iml" />
+    </modules>
+  </component>
+</project>

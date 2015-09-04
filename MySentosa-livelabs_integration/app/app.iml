@@ -107,8 +107,8 @@
     <orderEntry type="library" exported="" name="support-v4-22.2.0" level="project" />
     <orderEntry type="library" exported="" name="twitter4j-core-4.0.3" level="project" />
     <orderEntry type="library" exported="" name="core-3.0.1" level="project" />
-    <orderEntry type="module" module-name="libGoogleAnalyticsServices_3.01" exported="" />
     <orderEntry type="module" module-name="urbanairship-lib-3.1.0" exported="" />
+    <orderEntry type="module" module-name="libGoogleAnalyticsServices_3.01" exported="" />
     <orderEntry type="module" module-name="integration" exported="" />
     <orderEntry type="module" module-name="osmdroid_sentosa" exported="" />
     <orderEntry type="module" module-name="FlurryAgent" exported="" />
