@@ -1,0 +1,7 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:drawable="@drawable/map_bt_directions_pressed" android:state_pressed="true"/> <!-- pressed -->
+
+    <item android:drawable="@drawable/map_bt_directions_normal"/> <!-- default/unchecked -->
+
+</selector>

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+        android:id="@+id/iv_item_img"
+        android:layout_width="98dp"
+        android:layout_height="74dp"
+        android:layout_marginLeft="5dp"
+        android:src="@drawable/stub_large" />
+
+    <LinearLayout
+        android:id="@+id/layout_text"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_weight="1"
+        android:orientation="vertical" >
+
+        <TextView
+            android:id="@+id/tv_items_name"
+            android:layout_width="wrap_content"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:layout_marginLeft="5dp"
+            android:gravity="center_vertical"
+            android:layout_marginRight="10dp"
+            android:layout_weight="1"
+            android:textColor="@android:color/black"
+            android:textSize="@dimen/text_size_small" />
+
+        <LinearLayout
+            android:id="@+id/layout_title_exclusive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="gone" >
+
+            <ImageView
+                android:layout_width="@dimen/islander_star_smaller_size"
+                android:layout_height="@dimen/islander_star_smaller_size"
+                android:layout_marginLeft="@dimen/tiny_spacing"
+                android:scaleType="fitXY"
+                android:src="@drawable/ico_islander_star" />
+
+            <TextView
+                android:id="@+id/tv_islander_exclusive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_marginLeft="@dimen/tiny_spacing"
+                android:text="@string/islander_exlusive"
+                android:textSize="@dimen/text_size_small"
+                android:textStyle="italic" />
+        </LinearLayout>
+    </LinearLayout>
+    
+    <TextView
+        android:id="@+id/tv_items_date"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="0dp"
+        android:layout_marginRight="0dp"
+        android:ellipsize="end"
+        android:singleLine="true"
+        android:textColor="@android:color/black"
+        android:textSize="14sp" />
+
+    <ImageView
+        android:id="@+id/iv_arrow"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginRight="0dp"
+        android:background="@drawable/accordian_arrow_right"
+        android:contentDescription="@string/app_name" />
+
+</LinearLayout>

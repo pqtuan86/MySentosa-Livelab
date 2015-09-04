@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <FrameLayout
+        android:id="@+id/header"
+        style="@style/FitWidth"
+        android:layout_gravity="top|center_horizontal">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ListView
+        style="@style/MatchParent"
+        android:id="@+id/list"
+        android:layout_below="@+id/header"
+        android:adjustViewBounds="true"
+        android:cacheColorHint="#00000000"
+        android:divider="#EDEDED"
+        android:dividerHeight="1dp" />
+
+    <TextView
+        style="@style/WrapContent"
+        android:id="@+id/no_promotion"
+        android:text="@string/no_promotion"
+        android:layout_below="@+id/header"
+        android:layout_alignParentBottom="true"
+        android:layout_centerInParent="true"
+        android:gravity="center"
+        android:padding="20dp"
+        android:visibility="gone"/>
+
+</RelativeLayout>

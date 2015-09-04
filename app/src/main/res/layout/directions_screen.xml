@@ -1,0 +1,148 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <LinearLayout
+        style="@style/MatchParent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/header"
+            style="@style/FitWidth">
+
+            <include layout="@layout/title_layout" />
+        </FrameLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="4dp">
+
+            <TextView
+                android:id="@+id/textView1"
+                style="@style/direction_autocomplete_label"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:text="From" />
+
+            <AutoCompleteTextView
+                android:id="@+id/filter_from"
+                style="@style/direction_autocomplete_widget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="5"
+                android:background="@drawable/bg_autocomplete_text"
+                android:padding="2dp"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="44dp"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp">
+
+            <TextView
+                android:id="@+id/textView2"
+                style="@style/direction_autocomplete_label"
+                android:layout_width="0dp"
+                android:layout_height="fill_parent"
+                android:layout_gravity="center_vertical"
+                android:layout_marginRight="2dp"
+                android:layout_weight="1"
+                android:gravity="right|center_vertical"
+                android:text="To" />
+
+            <AutoCompleteTextView
+                android:id="@+id/filter_to"
+                style="@style/direction_autocomplete_widget"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:layout_margin="5dp"
+                android:layout_weight="5"
+                android:background="@drawable/bg_autocomplete_text"
+                android:padding="2dp"
+                android:selectAllOnFocus="true" />
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/get_directions"
+            android:layout_width="300dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center_horizontal"
+            android:paddingBottom="1dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="1dp"
+            android:scaleType="fitXY"
+            android:src="@drawable/bt_getdirections">
+
+            <requestFocus />
+        </ImageView>
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="52dp"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="7dp"
+            android:orientation="horizontal"
+            android:paddingBottom="1dp"
+            android:paddingLeft="4dp"
+            android:paddingRight="4dp"
+            android:paddingTop="1dp">
+
+            <ImageView
+                android:id="@+id/get_directions_tram"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="152"
+                android:scaleType="fitXY"
+                android:src="@drawable/bt_tram_directions_pressed" />
+
+            <ImageView
+                android:id="@+id/get_directions_walk"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center_horizontal"
+                android:layout_weight="148"
+                android:scaleType="fitXY"
+                android:src="@drawable/bt_walk_directions_normal" />
+        </LinearLayout>
+
+        <ListView
+            android:id="@+id/directions_lv"
+            style="@style/FitWidth"
+            android:layout_marginTop="5dp"
+            android:cacheColorHint="@android:color/transparent" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+</RelativeLayout>

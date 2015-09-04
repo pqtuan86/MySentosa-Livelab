@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="islander_icon_margin_top_welcome">25sp</dimen>
+    <dimen name="islander_detail_margin_top_welcome">15dp</dimen>
+    
+    <dimen name="text_size_user_name">23sp</dimen>
+    <dimen name="text_size_very_large">25sp</dimen>
+    <dimen name="text_size_large">18sp</dimen>
+    <dimen name="text_size_regular">16sp</dimen>
+    <dimen name="text_size_small">13sp</dimen>
+    
+    <dimen name="regular_spacing">17dp</dimen>
+    <dimen name="large_spacing">35dp</dimen>
+    <dimen name="tiny_spacing">5dp</dimen>
+    
+    <dimen name="tiny_margin">2dp</dimen>
+    <dimen name="small_margin">3dp</dimen>
+    <dimen name="regular_margin">8dp</dimen>
+    <dimen name="bigger_regular_margin">17dp</dimen>
+    <dimen name="less_large_margin">20dp</dimen>
+    <dimen name="quite_large_margin">50dp</dimen>
+    <dimen name="large_margin">70dp</dimen>
+    <dimen name="more_large_margin">70dp</dimen>
+    
+    <dimen name="islander_login_dialog_width">300dp</dimen>
+
+    <dimen name="header_text_size">16sp</dimen>
+    <dimen name="header_title_top_margin">2dp</dimen>
+
+</resources>

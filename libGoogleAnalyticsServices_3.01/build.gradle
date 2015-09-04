@@ -1,0 +1,2 @@
+configurations.create("default")
+artifacts.add("default", file('libGoogleAnalyticsServices_3.01.jar'))

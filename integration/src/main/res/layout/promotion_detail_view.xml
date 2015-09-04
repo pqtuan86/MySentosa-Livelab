@@ -1,0 +1,459 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <RelativeLayout
+            android:id="@+id/top"
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/photo_view"
+                android:layout_width="fill_parent"
+                android:layout_height="250dp"
+                android:scaleType="centerCrop"
+                android:layout_alignTop="@+id/title_bar"/>
+
+            <LinearLayout
+                android:id="@+id/title_bar"
+                android:layout_width="match_parent"
+                android:layout_height="65dp"
+                android:gravity="center"
+                android:background="@drawable/sentosa_header_1600" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/title"
+                    android:textSize="@dimen/title_size"
+                    android:layout_gravity="top"
+                    android:textColor="#fff"
+                    android:text="Coupons"/>
+
+            </LinearLayout>
+        </RelativeLayout>
+
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:orientation="vertical"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@+id/top"
+            android:layout_alignRight="@+id/top"
+            android:layout_alignBottom="@+id/top"
+            android:layout_gravity="bottom"
+            android:gravity="bottom"
+            android:background="@drawable/sentosa_shadow_1600">
+
+            <!--
+            <TextView
+                android:id="@+id/campaignName_txt"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textColor="#fff"
+                android:textSize="16sp"/> -->
+
+            <TextView
+                android:id="@+id/title_txt"
+                android:paddingLeft="@dimen/activity_horizontal_margin"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:maxLines="3"
+                android:textSize="@dimen/campaign_title_size"
+                android:textColor="#fff"
+                android:ellipsize="end" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:scrollbars="none">
+
+        <LinearLayout
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:paddingLeft="@dimen/activity_horizontal_margin"
+            android:paddingRight="@dimen/activity_horizontal_margin"
+            android:paddingTop="@dimen/activity_vertical_margin"
+            android:paddingBottom="@dimen/activity_vertical_margin"
+            android:orientation="vertical">
+
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/promotion_detail_title_left_padding">
+
+                <LinearLayout
+                    android:id="@+id/valid_date_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp"
+                    android:paddingTop="@dimen/promotion_detail_title_top_padding">
+
+                    <TextView
+                        android:id="@+id/valid_date_header"
+                        android:text="@string/valid_date_title"
+                        android:layout_gravity="top"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/header_size"
+                        android:textStyle="bold"
+                        android:textColor="#2a2a2a"
+                        android:layout_weight="8"/>
+
+                    <ImageView
+                        android:id="@+id/valid_date_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:src="@drawable/collapsebutton"
+                        android:layout_weight="2"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/valid_date_txt"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/description_size"
+                    android:textColor="#3e3e3e"
+                    android:visibility="gone"/>
+
+            </LinearLayout>
+
+            <View
+                android:layout_marginTop="5dp"
+                android:layout_width="fill_parent"
+                android:layout_height="1px"
+                android:background="#bfbfbf"/>
+
+            <LinearLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/promotion_detail_title_left_padding">
+
+                <LinearLayout
+                    android:id="@+id/description_layout"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp"
+                    android:paddingTop="@dimen/promotion_detail_title_top_padding"
+                    android:gravity="top"
+                    >
+
+                    <TextView
+                        android:id="@+id/description_header"
+                        android:text="@string/description_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/header_size"
+                        android:textStyle="bold"
+                        android:textColor="#2a2a2a"
+                        android:layout_gravity="top"
+                        android:layout_weight="8"/>
+
+                    <ImageView
+                        android:id="@+id/description_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:src="@drawable/expandbutton"
+                        android:layout_gravity="top"
+                        android:layout_weight="2"/>
+
+                </LinearLayout>
+
+
+
+                <TextView
+                    android:id="@+id/description_txt"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/description_size"
+                    android:textColor="#3e3e3e"
+                    android:visibility="visible"/>
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#bfbfbf"/>
+
+            </LinearLayout>
+
+
+
+            <LinearLayout
+                android:id="@+id/merchant_layout"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:paddingLeft="@dimen/promotion_detail_title_left_padding">
+
+                <LinearLayout
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="7dp"
+                    android:paddingTop="@dimen/promotion_detail_title_top_padding">
+
+                    <TextView
+                        android:id="@+id/merchant_header"
+                        android:text="@string/merchant_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/header_size"
+                        android:textStyle="bold"
+                        android:layout_gravity="top"
+                        android:textColor="#2a2a2a"
+                        android:layout_weight="8"/>
+
+                    <ImageView
+                        android:id="@+id/merchant_button"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="top"
+                        android:src="@drawable/collapsebutton"
+                        android:layout_weight="2"/>
+
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/merchant_name"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="3dp"
+                    android:textSize="@dimen/description_size"
+                    android:layout_weight="3"
+                    android:visibility="gone"
+                    android:maxLines="3"
+                    android:textColor="#3e3e3e"/>
+
+
+
+                <TextView
+                    android:id="@+id/merchant_txt"
+                    android:layout_marginTop="3dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textSize="@dimen/description_size"
+                    android:textColor="#3e3e3e"
+                    android:visibility="gone"/>
+
+                <LinearLayout
+                    android:id="@+id/merchant_operating_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:weightSum="10"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/merchant_operating_title"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:text="Operaing Hour: "
+                        android:layout_weight="7"
+                        android:textColor="#3e3e3e"/>
+
+                    <TextView
+                        android:id="@+id/merchant_operating_hour"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:layout_weight="3"
+                        android:maxLines="3"
+                        android:textColor="#3e3e3e"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/merchant_location_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:weightSum="10"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/merchant_location_title"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:text="Location: "
+                        android:layout_weight="7"
+                        android:textColor="#3e3e3e"/>
+
+                    <TextView
+                        android:id="@+id/merchant_location"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:layout_weight="3"
+                        android:maxLines="3"
+                        android:textColor="#3e3e3e"/>
+
+                </LinearLayout>
+
+
+                <LinearLayout
+                    android:id="@+id/merchant_phone_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:weightSum="10"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/merchant_phone_title"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:text="Phone: "
+                        android:layout_weight="7"
+                        android:textColor="#3e3e3e"/>
+
+                    <TextView
+                        android:id="@+id/merchant_phone"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:layout_weight="3"
+                        android:maxLines="1"
+                        android:textColor="#3e3e3e"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/merchant_email_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:weightSum="10"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/merchant_email_title"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:text="Email: "
+                        android:layout_weight="7"
+                        android:textColor="#3e3e3e"/>
+
+                    <TextView
+                        android:id="@+id/merchant_email"
+                        android:layout_marginTop="3dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:layout_weight="3"
+                        android:maxLines="2"
+                        android:textColor="#3e3e3e"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/merchant_web_layout"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="left"
+                    android:weightSum="10">
+
+                    <TextView
+                        android:id="@+id/merchant_web_title"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:text="Web: "
+                        android:layout_weight="7"
+                        android:textColor="#3e3e3e"/>
+
+                    <TextView
+                        android:id="@+id/merchant_web"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="@dimen/description_size"
+                        android:layout_weight="3"
+                        android:maxLines="2"
+                        android:textColor="#3e3e3e"/>
+
+                </LinearLayout>
+
+
+
+                <View
+                    android:layout_marginTop="5dp"
+                    android:layout_width="fill_parent"
+                    android:layout_height="1px"
+                    android:background="#bfbfbf"/>
+
+            </LinearLayout>
+
+
+
+
+
+
+<!--
+            <ImageView
+                android:id="@+id/logo_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
+                android:layout_margin="7dp"/> -->
+
+            <Button
+                android:id="@+id/redeemButton"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:text="REDEEM"
+                android:textSize="@dimen/redeem_size"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:paddingLeft="5dp"
+                android:paddingRight="5dp"
+                android:textColor="#fff"
+                android:background="#000"/>
+
+
+        </LinearLayout>
+
+
+    </ScrollView>
+
+</LinearLayout>

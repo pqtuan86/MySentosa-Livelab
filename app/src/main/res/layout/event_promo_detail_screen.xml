@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white" >
+
+    <ScrollView
+        android:id="@+id/sv_event_promo_detail_container"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@drawable/menu_main_list_divider"
+            android:orientation="vertical"
+            android:paddingBottom="60dp"
+            android:showDividers="middle" >
+
+            <FrameLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" >
+
+                <!-- height is set in code -->
+
+                <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+                    android:id="@+id/iv_detail_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:src="@drawable/stub_large" />
+
+                <include layout="@layout/loading_layout" />
+
+                <TextView
+                    android:id="@+id/tv_eventpromo_name"
+                    style="@style/style_main_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:background="@color/bg_gradient_xparent_to_black"
+                    android:padding="4dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:padding="4dp" >
+                
+                <ImageView
+                    android:id="@+id/iv_linked_ticket"
+                    android:layout_width="@dimen/att_btn_width_heigth"
+                    android:layout_height="@dimen/att_btn_width_heigth"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/bt_tickets" />
+                
+
+                <ImageView
+                    android:id="@+id/call_us"
+                    android:layout_width="@dimen/att_btn_width_heigth"
+                    android:layout_height="@dimen/att_btn_width_heigth"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/bt_callus" />
+
+                <ImageView
+                    android:id="@+id/iv_facebook_share"
+                    android:layout_width="@dimen/att_btn_width_heigth"
+                    android:layout_height="@dimen/att_btn_width_heigth"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/bt_facebook" />
+
+                <ImageView
+                    android:id="@+id/iv_twitter_share"
+                    android:layout_width="@dimen/att_btn_width_heigth"
+                    android:layout_height="@dimen/att_btn_width_heigth"
+                    android:layout_margin="4dp"
+                    android:src="@drawable/bt_twitter" />
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+
+    <include layout="@layout/title_layout" />
+
+    <ProgressBar
+        android:id="@+id/pb_main_loading"
+        android:layout_width="30dp"
+        android:layout_height="30dp"
+        android:layout_gravity="center_vertical|center_horizontal"
+        android:visibility="gone" />
+
+</FrameLayout>

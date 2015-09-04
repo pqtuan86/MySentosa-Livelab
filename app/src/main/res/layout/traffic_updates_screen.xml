@@ -1,0 +1,118 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <com.mysentosa.android.sg.custom_views.ToggleGroup
+        android:id="@+id/tg_traffic_updates"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:paddingLeft="5dp"
+        android:paddingRight="5dp" >
+
+        <ToggleButton
+            android:id="@+id/tb_twd_sentosa"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_left_btn_bg"
+            android:checked="true"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/selector_toggle_btn_text_color"
+            android:textColorHighlight="#FFFFFF"
+            android:textOff="Towards Sentosa"
+            android:textOn="Towards Sentosa"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+
+        <ToggleButton
+            android:id="@+id/tb_twd_telok_blangah"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_weight="1"
+            android:background="@drawable/toggle_right_btn_bg"
+            android:paddingBottom="5dp"
+            android:paddingTop="5dp"
+            android:textColor="@color/selector_toggle_btn_text_color"
+            android:textColorHighlight="#FFFFFF"
+            android:textOff="Towards Telok Blangah"
+            android:textOn="Towards Telok Blangah"
+            android:textSize="12sp"
+            android:textStyle="bold"
+            android:typeface="sans" />
+    </com.mysentosa.android.sg.custom_views.ToggleGroup>
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/traffic_update_container"
+            android:layout_width="fill_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:visibility="gone" >
+
+            <LinearLayout
+                android:id="@+id/ll_traffic_update_time_container"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/bg_event_promo"
+                android:orientation="horizontal"
+                android:padding="10dp" >
+
+                <TextView
+                    style="@style/style_event_promo_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:text="Time" />
+
+                <TextView
+                    android:id="@+id/tv_traffic_update_time"
+                    style="@style/style_event_promo_info"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="2"
+                    android:text="Time" />
+            </LinearLayout>
+
+            <FrameLayout
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_marginRight="8dp"
+                android:adjustViewBounds="true"
+                android:background="@drawable/trafficupdates_picture_frame"
+                android:padding="8dp" >
+
+                <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+                    android:id="@+id/iv_traffic_update_img"
+                    android:layout_width="fill_parent"
+                    android:layout_height="0dp"
+                    android:adjustViewBounds="true"
+                    android:clickable="true" />
+            </FrameLayout>
+        </LinearLayout>
+
+        <include layout="@layout/loading_layout" />
+    </FrameLayout>
+
+</LinearLayout>

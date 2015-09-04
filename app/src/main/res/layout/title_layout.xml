@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/FitWidth">
+
+    <com.mysentosa.android.sg.custom_views.AspectRatioImageView style="@style/header.background" />
+
+    <TextView
+        android:id="@+id/header_title"
+        style="@style/style_main_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal|top"
+        android:layout_marginTop="@dimen/header_title_top_margin"
+        android:gravity="center"
+        android:textSize="@dimen/header_text_size" />
+
+    <ImageView
+        android:id="@+id/header_map"
+        android:layout_width="67dp"
+        android:layout_height="40dp"
+        android:layout_gravity="left|top"
+        android:layout_marginLeft="4dp"
+        android:layout_marginTop="@dimen/header_title_top_margin"
+        android:src="@drawable/bt_backtomap"
+        android:visibility="gone" />
+
+    <TextView
+        android:id="@+id/bt_text_right"
+        android:layout_width="67dp"
+        android:layout_height="40dp"
+        android:layout_gravity="right|top"
+        android:layout_marginRight="4dp"
+        android:layout_marginTop="6dp"
+        android:background="@drawable/selector_small_button"
+        android:gravity="center"
+        android:textColor="@color/text_color_white"
+        android:visibility="gone" />
+
+    <ImageView
+        android:id="@+id/header_bookmark"
+        style="@style/headerIcon"
+        android:layout_toLeftOf="@+id/header_search"
+        android:background="@drawable/bt_bookmarks" />
+
+    <ImageView
+        android:id="@+id/header_search"
+        style="@style/headerIcon"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentTop="true"
+        android:padding="2dp"
+        android:src="@drawable/bt_search" />
+
+</RelativeLayout>

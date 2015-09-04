@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="@dimen/islander_login_dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_rectangel_rounded"
+    android:orientation="vertical"
+    android:padding="@dimen/bigger_regular_margin" >
+
+    <ImageView
+        android:id="@+id/iv_close"
+        android:layout_width="@dimen/islander_close_button_size"
+        android:layout_height="@dimen/islander_close_button_size"
+        android:layout_gravity="right"
+        android:scaleType="centerCrop"
+        android:src="@drawable/bt_close_popup" />
+
+    <TextView
+        android:id="@+id/tv_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/islander_login_title"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_regular" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bigger_regular_margin"
+        android:background="@drawable/selector_standard_button"
+        android:text="@string/islander_login"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_regular" />
+
+    <Button
+        android:id="@+id/bt_signup"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/selector_standard_orange_button"
+        android:text="@string/islander_sign_me_up"
+        android:visibility="gone"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_regular" />
+
+</LinearLayout>

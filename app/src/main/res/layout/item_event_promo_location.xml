@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout 
+    xmlns:android="http://schemas.android.com/apk/res/android"
+   	android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingTop="5dp"
+    android:paddingBottom="5dp"
+    >
+
+<LinearLayout 
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_event_promo"
+    android:padding="10dp" 
+    android:duplicateParentState="true"   
+    >
+
+
+    <TextView
+        android:id="@+id/tv_node_title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_weight="14"
+        android:duplicateParentState="true"
+        android:gravity="left"
+        android:singleLine="true"
+        android:textColor="@color/selector_location_title_color"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <ImageView
+        android:id="@+id/iv_right_arrow"
+        android:layout_width="10dp"
+        android:layout_height="14dp"
+        android:layout_gravity="center"
+        android:layout_weight="1"
+
+        android:duplicateParentState="true"
+        android:src="@drawable/list_arrow" />
+
+</LinearLayout>
+</FrameLayout>

@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">Sentosa</string>
+
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+    <string name="action1">Get Promotions</string>
+    <string name="action2">Update User</string>
+
+    <!-- String for promotion page -->
+    <string name="merchant_info">Merchant Info</string>
+    <string name="description_title">Description</string>
+    <string name="valid_date_title">Valid Date</string>
+
+</resources>

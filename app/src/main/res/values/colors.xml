@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <color name="text_color_orange">#EF7F02</color>
+    <color name="text_color_black">#000000</color>
+    <color name="text_color_grey">#666666</color>
+    <color name="text_color_white">#FFFFFF</color>
+    <color name="text_color_red">#CF6767</color>
+    <color name="text_color_dark_orange">#D84800</color>
+    <color name="text_box_color_dark_orange">#DE5126</color>
+    <color name="bg_color_light_orange">#E9CD9B</color>
+    <color name="bg_color_dark_orange">#EF7F02</color>
+    <color name="event_detail_box">#EECF91</color>
+    <color name="indicator_page_color">#4D4D4D</color>
+    <color name="indicator_fill_color">#EF7F02</color>
+    <color name="bg_color_orange_islander">#f07d00</color>
+    <color name="silver">#c0c0c0</color>
+
+    <!-- Color for ZXING library -->
+    <color name="contents_text">#ff000000</color>
+    <color name="encode_view">#ffffffff</color>
+    <color name="possible_result_points">#c0ffbd21</color> <!-- Android standard ICS color -->
+    <color name="result_minor_text">#ffc0c0c0</color>
+    <color name="result_points">#c099cc00</color> <!-- Android standard ICS color -->
+    <color name="result_text">#ffffffff</color>
+    <color name="result_view">#b0000000</color>
+    <color name="status_text">#ffffffff</color>
+    <color name="transparent">#00000000</color>
+    <color name="viewfinder_laser">#ffcc0000</color> <!-- Android standard ICS color -->
+    <color name="viewfinder_mask">#60000000</color>
+
+    <!-- flat color-->
+    <color name="red_pomegranate">#f22613</color>
+    <color name="blue_dodger">#19b5fe</color>
+</resources>

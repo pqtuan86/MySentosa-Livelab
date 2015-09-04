@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white" >
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header"
+        android:layout_margin="10dp"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_name"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:paddingTop="5dp"
+                android:text="@string/cart_name" />
+
+            <EditText
+                android:id="@+id/ed_name"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_name"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:padding="5dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_passport"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_name"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/cart_pwnumber" />
+
+            <EditText
+                android:id="@+id/ed_passport"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_passport"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:padding="5dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_birth"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_passport"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/cart_birth" />
+
+            <Button
+                android:id="@+id/bt_birth"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_birth"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:gravity="left"
+                android:padding="5dp" />
+
+            <TextView
+                android:id="@+id/tv_email"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/bt_birth"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/cart_email" />
+
+            <EditText
+                android:id="@+id/ed_eamil"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_email"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:padding="5dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_email_nofiy"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_eamil"
+                android:layout_marginTop="10dp"
+                android:text="@string/email_text" />
+
+            <TextView
+                android:id="@+id/tv_nation"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_email_nofiy"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/cart_nationality" />
+
+            <Spinner
+                android:id="@+id/sn_nation"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_nation"
+                android:layout_marginTop="5dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_mobile"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sn_nation"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/cart_mobile" />
+
+            <EditText
+                android:id="@+id/ed_mobile"
+                android:layout_width="fill_parent"
+                android:layout_height="40dp"
+                android:layout_below="@+id/tv_mobile"
+                android:layout_marginTop="5dp"
+                android:background="@drawable/rounded_border"
+                android:inputType="number"
+                android:padding="5dp"
+                android:singleLine="true" />
+
+            <TextView
+                android:id="@+id/tv_mandotry"
+                style="@style/style_cart_info"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/ed_mobile"
+                android:layout_marginTop="10dp"
+                android:paddingTop="5dp"
+                android:text="@string/mandatory" />
+
+            <RelativeLayout
+                android:id="@+id/rl_terms"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_mandotry"
+                android:layout_marginTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/iv_terms"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_terms"
+                    style="@style/style_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_terms"
+                    android:text="@string/cart_term" />
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/rl_letter"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_terms"
+                android:layout_marginTop="10dp" >
+
+                <ImageView
+                    android:id="@+id/iv_letter"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="40dp" />
+
+                <TextView
+                    android:id="@+id/tv_letter"
+                    style="@style/style_description"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginLeft="10dp"
+                    android:layout_toRightOf="@+id/iv_letter"
+                    android:text="@string/cart_sign" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_letter"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_standard_button"
+                android:text="@string/ticket_button_next"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/v_divider4"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/btn_next" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

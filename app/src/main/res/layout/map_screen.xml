@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    style="@style/MatchParent">
+
+    <FrameLayout
+        android:id="@+id/map_holder"
+        style="@style/MatchParent"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/header_margin_top_modifier" />
+
+    <FrameLayout
+        android:id="@+id/header"
+        style="@style/FitWidth">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ImageView
+        style="@style/mapButton"
+        android:id="@+id/map_user_location"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentLeft="true"
+        android:layout_marginLeft="15dp"
+        android:src="@drawable/bt_compass" />
+
+    <LinearLayout
+        android:id="@+id/map_menu_container"
+        style="@style/map.menuContainer"
+        android:layout_alignBottom="@+id/map_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_alignRight="@+id/map_menu"
+        android:layout_marginRight="15dp"
+        android:orientation="vertical"
+        android:visibility="gone">
+
+        <ImageView
+            style="@style/mapMenu.edge"
+            android:id="@+id/map_directions"
+            android:src="@drawable/map_bt_showdirections" />
+
+        <ImageView
+            style="@style/mapMenu.middle"
+            android:id="@+id/map_clear_route"
+            android:src="@drawable/map_bt_clearroute" />
+
+        <ImageView
+            style="@style/mapMenu.middle"
+            android:id="@+id/map_listing"
+            android:src="@drawable/map_bt_showbycategories" />
+
+        <ImageView
+            style="@style/mapMenu.edge"
+            android:id="@+id/map_show_bookmarks"
+            android:src="@drawable/map_bt_showbookmarks" />
+    </LinearLayout>
+
+    <ImageView
+        style="@style/mapButton"
+        android:id="@+id/map_menu"
+        android:layout_alignParentBottom="true"
+        android:layout_alignParentRight="true"
+        android:layout_marginRight="15dp"
+        android:src="@drawable/bt_showmenu" />
+
+    <com.mysentosa.android.sg.custom_views.BannerView
+        android:id="@+id/banner"
+        android:layout_width="fill_parent"
+        android:layout_height="60dp" />
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+</RelativeLayout>

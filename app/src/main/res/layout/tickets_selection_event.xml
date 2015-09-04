@@ -1,0 +1,245 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white" >
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header"
+        android:fadingEdge="none"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TextView
+                android:id="@+id/tv_date"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="10dp"
+                android:singleLine="true"
+                android:text="@string/ticket_selection_event_date"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/sn_date"
+                android:layout_width="150dp"
+                android:layout_height="50dp"
+                android:layout_below="@+id/tv_date"
+                android:layout_marginLeft="10dp"
+                android:padding="0dp"
+                android:textSize="12sp" />
+
+            <TextView
+                android:id="@+id/tv_select_ticket"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sn_date"
+                android:layout_margin="10dp"
+                android:singleLine="true"
+                android:text="@string/ticket_selection_event_select"
+                android:textColor="@android:color/black"
+                android:textSize="16sp" />
+
+            <Spinner
+                android:id="@+id/sn_selection"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tv_select_ticket"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp"
+                android:textSize="12sp" />
+
+            <RelativeLayout
+                android:id="@+id/rl_qty"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/sn_selection"
+                android:layout_margin="10dp" >
+
+                <TextView
+                    android:id="@+id/tv_qty"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="@string/ticket_selection_event_qty"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp" />
+
+                <Spinner
+                    android:id="@+id/sn_qty"
+                    android:layout_width="80dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:padding="0dp"
+                    android:textSize="12sp" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/v_divider1"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rl_qty"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/menu_main_list_divider" />
+
+            <RelativeLayout
+                android:id="@+id/rl_topup"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v_divider1"
+                android:layout_margin="10dp" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_topup_bar"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:singleLine="true"
+                        android:text="@string/ticket_selection_event_top"
+                        android:textColor="@android:color/black"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_top"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <TableLayout
+                    android:id="@+id/tb_top_table"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/rl_topup_bar"
+                    android:layout_marginTop="10dp"
+                    android:visibility="gone" >
+                </TableLayout>
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/v_divider2"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rl_topup"
+                android:background="@drawable/menu_main_list_divider" />
+
+            <RelativeLayout
+                android:id="@+id/rl_promo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v_divider2"
+                android:layout_margin="10dp" >
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:singleLine="true"
+                    android:text="@string/ticket_selection_event_promo"
+                    android:textColor="@android:color/black"
+                    android:textSize="18sp" />
+
+                <EditText
+                    android:id="@+id/ed_promo"
+                    android:layout_width="100dp"
+                    android:layout_height="40dp"
+                    android:layout_alignParentRight="true"
+                    android:layout_centerVertical="true"
+                    android:background="@drawable/rounded_border"
+                    android:padding="5dp" />
+            </RelativeLayout>
+
+            <View
+                android:id="@+id/v_divider3"
+                android:layout_width="fill_parent"
+                android:layout_height="1dp"
+                android:layout_below="@+id/rl_promo"
+                android:background="@drawable/menu_main_list_divider" />
+
+            <RelativeLayout
+                android:id="@+id/rl_note"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/v_divider3"
+                android:layout_margin="10dp" >
+
+                <RelativeLayout
+                    android:id="@+id/rl_note_bar"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" >
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerVertical="true"
+                        android:singleLine="true"
+                        android:text="@string/ticket_imp_note"
+                        android:textColor="@color/text_color_red"
+                        android:textSize="18sp" />
+
+                    <ImageView
+                        android:id="@+id/iv_arrow_note"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentRight="true"
+                        android:layout_centerVertical="true" />
+                </RelativeLayout>
+
+                <TextView
+                    android:id="@+id/tv_notes"
+                    android:layout_width="fill_parent"
+                    android:layout_height="180dp"
+                    android:scrollbars="vertical"
+                    android:focusable="true"
+                    android:focusableInTouchMode="true"
+                    android:layout_below="@+id/rl_note_bar"
+                    android:layout_marginTop="10dp"
+                    android:background="@drawable/rounded_border"
+                    android:padding="5dp"
+                    android:textColor="@android:color/black"
+                    android:textSize="16sp"
+                    android:visibility="gone" />
+            </RelativeLayout>
+
+            <Button
+                android:id="@+id/btn_next"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/rl_note"
+                android:layout_margin="10dp"
+                android:background="@drawable/selector_standard_button"
+                android:text="@string/ticket_button_next"
+                android:textColor="@android:color/white"
+                android:textStyle="bold" />
+
+            <View
+                android:id="@+id/v_divider4"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/btn_next" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

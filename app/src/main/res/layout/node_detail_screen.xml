@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <ScrollView
+        style="@style/FitWidth"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/header_margin_top_modifier">
+
+        <LinearLayout
+            android:id="@+id/container"
+            style="@style/FitWidth"
+            android:divider="@drawable/menu_main_list_divider"
+            android:orientation="vertical"
+            android:paddingBottom="60dp"
+            android:showDividers="middle">
+
+            <FrameLayout style="@style/FitWidth">
+
+                <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+                    android:id="@+id/node_image"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:adjustViewBounds="true"
+                    android:clickable="true"
+                    android:src="@drawable/stub_large" />
+
+                <include layout="@layout/loading_layout" />
+
+                <TextView
+                    android:id="@+id/node_name"
+                    style="@style/style_main_text"
+                    android:layout_width="fill_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="bottom|left"
+                    android:background="@color/bg_gradient_xparent_to_black"
+                    android:padding="4dp" />
+            </FrameLayout>
+
+            <LinearLayout
+                style="@style/WrapContent"
+                android:layout_gravity="center_vertical|right"
+                android:orientation="horizontal"
+                android:padding="4dp">
+
+                <ImageView
+                    android:id="@+id/call_us"
+                    style="@style/detailIcon"
+                    android:src="@drawable/bt_callus" />
+
+                <ImageView
+                    android:id="@+id/bookmark"
+                    style="@style/detailIcon"
+                    android:src="@drawable/bt_bookmark_add" />
+
+                <ImageView
+                    android:id="@+id/play_video"
+                    style="@style/detailIcon"
+                    android:src="@drawable/bt_playvideo" />
+
+                <ImageView
+                    android:id="@+id/directions"
+                    style="@style/detailIcon"
+                    android:src="@drawable/bt_directions"
+                    android:padding="1dp"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/header"
+        style="@style/FitWidth">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+</RelativeLayout>

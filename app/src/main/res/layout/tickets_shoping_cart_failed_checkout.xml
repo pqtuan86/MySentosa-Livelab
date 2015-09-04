@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white" >
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ScrollView
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@+id/header"
+        android:layout_margin="10dp"
+        android:fillViewport="true"
+        android:scrollbars="none" >
+
+        <RelativeLayout
+            android:id="@+id/rl_middle"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <TableLayout
+                android:id="@+id/tb_table"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp" >
+            </TableLayout>
+
+            <Button
+                android:id="@+id/btn_remove_items"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/tb_table"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_standard_button"
+                android:text="@string/ticket_fail_remove"
+                android:visibility="gone" />
+
+            <Button
+                android:id="@+id/btn_cancel"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/btn_remove_items"
+                android:layout_marginTop="10dp"
+                android:background="@drawable/selector_standard_button"
+                android:text="@string/ticket_button_cancel"
+                android:visibility="gone" />
+
+            <View
+                android:id="@+id/v_divider"
+                android:layout_width="fill_parent"
+                android:layout_height="10dp"
+                android:layout_below="@+id/btn_cancel" />
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

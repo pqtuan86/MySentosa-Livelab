@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white"
+    android:orientation="vertical">
+
+    <FrameLayout
+        android:id="@+id/container"
+        style="@style/MatchParent"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/header_margin_top_modifier">
+
+        <WebView
+            android:id="@+id/webview"
+            style="@style/FitHeight"
+            android:visibility="invisible" />
+
+        <include layout="@layout/loading_layout" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/header"
+        style="@style/FitWidth">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+</RelativeLayout>

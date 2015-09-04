@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="@dimen/islander_login_dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_rectangel_rounded"
+    android:orientation="vertical"
+    android:padding="@dimen/bigger_regular_margin" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/islander_participated_success"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:id="@+id/tv_title_detail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bigger_regular_margin"
+        android:gravity="center"
+        android:text="@string/islander_claimed_success_detail"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_regular" />
+
+    <Button
+        android:id="@+id/bt_ok"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bigger_regular_margin"
+        android:background="@drawable/selector_standard_orange_button"
+        android:text="Ok"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+</LinearLayout>

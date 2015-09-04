@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@android:color/white" >
+
+    <TextView
+        android:id="@+id/tv_title_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="@dimen/quite_large_margin"
+        android:layout_marginTop="@dimen/more_large_margin"
+        android:text="@string/islander_full_name"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:id="@+id/tv_detail_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_name"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_name"
+        android:singleLine="true"
+        android:text="Name"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_title_account_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_title_name"
+        android:layout_below="@id/tv_title_name"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_account_nric"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:id="@+id/tv_detail_account_id"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_account_id"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_account_id"
+        android:singleLine="true"
+        android:text="ID"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_title_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_title_name"
+        android:layout_below="@id/tv_title_account_id"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_date_of_birth"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:id="@+id/tv_detail_dob"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_dob"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_dob"
+        android:singleLine="true"
+        android:text="DOB"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_title_email"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_title_name"
+        android:layout_below="@id/tv_title_dob"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_email"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/tv_title_email"
+        android:layout_alignBottom="@id/tv_title_email"
+        android:text="* "
+        android:textColor="@color/text_color_red"
+        android:textSize="@dimen/text_size_regular" />
+    
+    <TextView
+        android:id="@+id/tv_detail_email"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_email"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_email"
+        android:singleLine="true"
+        android:text="Email"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_title_mobile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_title_name"
+        android:layout_below="@id/tv_title_email"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_mobile"
+        android:textSize="@dimen/text_size_regular" />
+
+	<TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/tv_title_mobile"
+        android:layout_alignBottom="@id/tv_title_mobile"
+        android:text="* "
+        android:textColor="@color/text_color_red"
+        android:textSize="@dimen/text_size_regular" />
+    
+    <TextView
+        android:id="@+id/tv_detail_mobile"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_mobile"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_mobile"
+        android:singleLine="true"
+        android:text="Mobile"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_title_address"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignRight="@id/tv_title_name"
+        android:layout_below="@id/tv_title_mobile"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_address"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_toLeftOf="@id/tv_title_address"
+        android:layout_alignBottom="@id/tv_title_address"
+        android:text="* "
+        android:textColor="@color/text_color_red"
+        android:textSize="@dimen/text_size_regular" />
+    
+    <TextView
+        android:id="@+id/tv_detail_address"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignTop="@id/tv_title_address"
+        android:layout_marginLeft="@dimen/bigger_regular_margin"
+        android:layout_marginRight="@dimen/bigger_regular_margin"
+        android:layout_toRightOf="@id/tv_title_address"
+        android:singleLine="false"
+        android:text="Address"
+        android:textSize="@dimen/text_size_regular"
+        android:textStyle="bold" />
+
+     <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+</RelativeLayout>

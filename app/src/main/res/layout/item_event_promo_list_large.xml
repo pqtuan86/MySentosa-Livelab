@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/selector_event_promo_list"
+    android:orientation="horizontal"
+    android:padding="5dp" >
+
+    <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+        android:id="@+id/iv_event_promo_item_large_thumbnail"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="4"
+        android:padding="4dp"
+        android:src="@drawable/stub_thumb" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginRight="2dp"
+        android:layout_weight="8"
+        android:gravity="center_vertical|left" >
+
+        <TextView
+            android:id="@+id/tv_event_promo_item_large_description"
+            style="@style/style_description"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:maxLines="4"
+            android:textColor="#000000"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+
+        <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+            android:id="@+id/iv_claimed"
+            android:layout_width="@dimen/deal_claimed_badge_size"
+            android:layout_height="0dp"
+            android:layout_alignParentRight="true"
+            android:visibility="invisible"
+            android:layout_alignParentTop="true"
+            android:src="@drawable/claimed_badge" />
+    </RelativeLayout>
+
+</LinearLayout>

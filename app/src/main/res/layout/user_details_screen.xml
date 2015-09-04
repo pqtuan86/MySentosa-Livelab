@@ -1,0 +1,276 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+    <!-- //////////////////////////////////////NAME////////////////////////////////// -->
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="10dp"
+        android:text="We would like to know more about you so that we can send you relevant updates on events, promotions, islander privilege, etc"
+        android:textColor="#2a2a2a"
+        android:textSize="15sp"
+        android:textStyle="bold" />
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="15dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:paddingLeft="20dp"
+            android:text="Name: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/tv_uds_name"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textPersonName"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true" />
+    </LinearLayout>
+    <!-- //////////////////////////////////////GENDER////////////////////////////////// -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="10"
+            android:gravity="center_vertical"
+            android:paddingLeft="20dp"
+            android:text="Gender: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <com.mysentosa.android.sg.custom_views.ToggleGroup
+            android:id="@+id/tg_uds_gender"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:orientation="horizontal" >
+
+            <ToggleButton
+                android:id="@+id/tb_uds_male"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_left_btn_bg"
+                android:checked="true"
+                android:textColor="@color/selector_toggle_btn_text_color"
+                android:textColorHighlight="#FFFFFF"
+                android:textOff="Male"
+                android:textOn="Male"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+
+            <ToggleButton
+                android:id="@+id/tb_uds_female"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_weight="1"
+                android:background="@drawable/toggle_right_btn_bg"
+                android:textColor="@color/selector_toggle_btn_text_color"
+                android:textColorHighlight="#FFFFFF"
+                android:textOff="Female"
+                android:textOn="Female"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:typeface="sans" />
+        </com.mysentosa.android.sg.custom_views.ToggleGroup>
+    </LinearLayout>
+    <!-- //////////////////////////////////////EMAIL////////////////////////////////// -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:paddingLeft="20dp"
+            android:text="Email: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/tv_uds_email"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="textEmailAddress"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true" />
+    </LinearLayout>
+    <!-- //////////////////////////////////////MOBILE////////////////////////////////// -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:paddingLeft="20dp"
+            android:text="Mobile: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/tv_uds_mobile"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="phone"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true" />
+    </LinearLayout>
+    <!-- //////////////////////////////////////BIRTH DATE////////////////////////////////// -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:paddingLeft="20dp"
+            android:text="Birth Date: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/et_dob"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:background="@drawable/bg_edit_text"
+            android:focusable="false"
+            android:inputType="date"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true" />
+
+    </LinearLayout>
+    <!-- //////////////////////////////////////POSTAL CODE////////////////////////////////// -->
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_vertical"
+        android:layout_marginTop="5dp"
+        android:orientation="horizontal" >
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="10"
+            android:paddingLeft="20dp"
+            android:text="Postal Code: "
+            android:textColor="#2a2a2a"
+            android:textSize="18sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/tv_uds_postalcode"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginRight="20dp"
+            android:layout_weight="12"
+            android:background="@drawable/bg_edit_text"
+            android:inputType="numberDecimal"
+            android:paddingBottom="5dp"
+            android:paddingLeft="10dp"
+            android:paddingRight="10dp"
+            android:paddingTop="5dp"
+            android:singleLine="true" />
+    </LinearLayout>
+
+    <RelativeLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="12dp" >
+
+        <ImageView
+            android:id="@+id/btn_next"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_alignParentRight="true"
+            android:clickable="true"
+            android:src="@drawable/next_btn" />
+
+        <ImageView
+            android:id="@+id/btn_skip"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginRight="6dp"
+            android:layout_toLeftOf="@id/btn_next"
+            android:clickable="true"
+            android:src="@drawable/skip_btn" />
+    </RelativeLayout>
+
+</LinearLayout>

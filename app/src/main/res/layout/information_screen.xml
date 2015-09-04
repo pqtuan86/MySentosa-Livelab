@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <FrameLayout style="@style/FitWidth">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <LinearLayout
+        style="@style/FitWidth"
+        android:layout_centerInParent="true"
+        android:orientation="vertical"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp">
+
+        <LinearLayout style="@style/information.Row">
+
+            <ImageView
+                android:id="@+id/emergency"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_emergency" />
+
+            <ImageView
+                android:id="@+id/getting_to_sentosa"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_gettingtosentosa" />
+
+            <ImageView
+                android:id="@+id/getting_around_sentosa"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_gettingaroundsentosa" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/information.Row">
+
+            <ImageView
+                android:id="@+id/traffic_updates"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_trafficupdates" />
+
+            <ImageView
+                android:id="@+id/stay_updated"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_stayupdated" />
+
+            <ImageView
+                android:id="@+id/islander_privileges"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_islander" />
+
+        </LinearLayout>
+
+        <LinearLayout style="@style/information.Row"
+            android:gravity="center_horizontal">
+
+            <ImageView
+                android:id="@+id/contact_us"
+                style="@style/information.Icon"
+                android:src="@drawable/bt_contactus" />
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+</RelativeLayout>

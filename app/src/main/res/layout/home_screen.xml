@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <LinearLayout
+        style="@style/FitWidth"
+        android:layout_below="@+id/header"
+        android:layout_marginTop="@dimen/header_margin_top_modifier"
+        android:orientation="vertical">
+
+        <com.mysentosa.android.sg.custom_views.CustomViewPager
+            android:id="@+id/vp_home"
+            android:layout_width="fill_parent"
+            android:layout_height="0dp" />
+
+        <com.mysentosa.android.sg.custom_views.CirclePageIndicator
+            android:id="@+id/cpi_indicator"
+            style="@style/FitWidth"
+            android:layout_marginTop="10dp"
+            android:padding="10dp"
+            app:fillColor="@color/indicator_fill_color"
+            app:pageColor="@color/indicator_page_color"
+            app:radius="6dp"
+            app:snap="true"
+            app:strokeWidth="0dp" />
+
+    </LinearLayout>
+
+    <FrameLayout
+        android:id="@+id/header"
+        style="@style/FitWidth">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <com.mysentosa.android.sg.custom_views.CurrentWeatherView
+        android:id="@+id/current_weather"
+        style="@style/WrapContent"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentRight="true"
+        android:layout_below="@+id/header"
+        android:layout_marginEnd="10dp"
+        android:layout_marginRight="10dp" />
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+
+</RelativeLayout>

@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/bg_color_orange_islander"
+    android:padding="@dimen/less_large_margin" >
+
+    <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+        android:id="@+id/im_main_icon"
+        android:layout_width="@dimen/islander_icon_size"
+        android:layout_height="0dp"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="@dimen/islander_icon_margin_top_login"
+        android:scaleType="fitXY"
+        android:src="@drawable/sentosa_islander_logo" />
+
+    <TextView
+        android:id="@+id/tv_id"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/im_main_icon"
+        android:layout_marginTop="@dimen/less_large_margin"
+        android:text="@string/islander_id"
+        android:textSize="@dimen/text_size_large" />
+
+    <EditText
+        android:id="@+id/et_id"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_id"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/bg_white_edit_text"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:textSize="@dimen/text_size_large" />
+
+    <TextView
+        android:id="@+id/tv_dob"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/et_id"
+        android:layout_marginTop="@dimen/regular_margin"
+        android:text="@string/islander_dob"
+        android:textSize="@dimen/text_size_large" />
+
+    <EditText
+        android:id="@+id/et_dob"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_dob"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/bg_white_edit_text"
+        android:padding="@dimen/small_margin"
+        android:singleLine="true"
+        android:inputType="date"
+        android:focusable="false"
+        android:textSize="@dimen/text_size_large" />
+
+    <Button
+        android:id="@+id/bt_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="@dimen/quite_large_margin"
+        android:background="@drawable/selector_standard_button"
+        android:text="@string/islander_login"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_large"
+        android:textStyle="bold" />
+
+</RelativeLayout>

@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="@dimen/islander_login_dialog_width"
+    android:layout_height="wrap_content"
+    android:background="@drawable/bg_white_rectangel_rounded"
+    android:orientation="vertical"
+    android:padding="@dimen/bigger_regular_margin" >
+
+    <TextView
+        android:id="@+id/tv_title"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ticket_cart_success"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_regular" />
+
+    <TextView
+        android:id="@+id/tv_detail"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bigger_regular_margin"
+        android:gravity="center"
+        android:text="@string/ticket_cart_item_added_success"
+        android:textColor="@color/text_color_black"
+        android:textSize="@dimen/text_size_regular" />
+    
+    <Button
+        android:id="@+id/bt_more_deal"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/bigger_regular_margin"
+        android:background="@drawable/selector_standard_button"
+        android:text="@string/ticket_cart_more_deal"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_regular" />
+
+    <Button
+        android:id="@+id/bt_checkout"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/small_margin"
+        android:background="@drawable/selector_standard_orange_button"
+        android:text="@string/ticket_cart_checkout"
+        android:textColor="@color/text_color_white"
+        android:textSize="@dimen/text_size_regular" />
+
+</LinearLayout>

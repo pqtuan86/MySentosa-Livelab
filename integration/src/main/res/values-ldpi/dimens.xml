@@ -1,0 +1,16 @@
+<resources>
+    <!-- Default screen margins, per the Android Design guidelines. -->
+    <dimen name="activity_horizontal_margin">16dp</dimen>
+    <dimen name="activity_vertical_margin">16dp</dimen>
+
+    <dimen name="promotion_detail_title_left_padding">37dp</dimen>
+    <dimen name="promotion_detail_title_top_padding">22dp</dimen>
+
+    <dimen name="list_view_item_title_size">10sp</dimen>
+
+    <dimen name="title_size">13sp</dimen>
+    <dimen name="campaign_title_size">10sp</dimen>
+    <dimen name="header_size">10sp</dimen>
+    <dimen name="description_size">7sp</dimen>
+    <dimen name="redeem_size">8sp</dimen>
+</resources>

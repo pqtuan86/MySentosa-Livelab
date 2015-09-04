@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="att_btn_width_heigth">50dp</dimen>
+    
+    <dimen name="islander_icon_size">230dp</dimen>
+    <dimen name="islander_icon_margin_top_welcome">45dp</dimen>
+    <dimen name="islander_detail_margin_top_welcome">25dp</dimen>
+    <dimen name="islander_icon_margin_top_login">70dp</dimen>
+    <dimen name="islander_user_profile_top_height">280dp</dimen>
+    <dimen name="islander_user_profile_picture_size">100dp</dimen>
+    
+    <dimen name="text_size_user_name">25sp</dimen>
+    <dimen name="text_size_very_large">28sp</dimen>
+    <dimen name="text_size_large">20sp</dimen>
+    <dimen name="text_size_regular">18sp</dimen>
+    <dimen name="text_size_small">15sp</dimen>
+    
+    <dimen name="regular_spacing">20dp</dimen>
+    <dimen name="large_spacing">40dp</dimen>
+    <dimen name="tiny_spacing">7dp</dimen>
+    
+    <dimen name="tiny_margin">3dp</dimen>
+    <dimen name="small_margin">5dp</dimen>
+    <dimen name="regular_margin">10dp</dimen>
+    <dimen name="bigger_regular_margin">20dp</dimen>
+    <dimen name="less_large_margin">25dp</dimen>
+    <dimen name="quite_large_margin">55dp</dimen>
+    <dimen name="large_margin">70dp</dimen>
+    <dimen name="more_large_margin">85dp</dimen>
+    
+    <dimen name="islander_edittext_height">90dp</dimen>
+    <dimen name="islander_close_button_size">35dp</dimen>
+    <dimen name="islander_login_dialog_width">340dp</dimen>
+    <dimen name="islander_star_size">25dp</dimen>
+    <dimen name="islander_star_smaller_size">20dp</dimen>
+    
+    <dimen name="deal_top_tab_width">100dp</dimen>
+    <dimen name="deal_top_tab_height">36dp</dimen>
+    
+    <dimen name="deal_claimed_badge_size">50dp</dimen>
+
+    <!-- header dimension -->
+    <dimen name="header_margin_top_modifier">-37dp</dimen>
+    <dimen name="header_text_size">18sp</dimen>
+    <dimen name="header_title_top_margin">3dp</dimen>
+    <dimen name="header_icon_margin_top">5dp</dimen>
+    <dimen name="header_icon_margin_right">5dp</dimen>
+    <dimen name="header_icon_width">40dp</dimen>
+    <dimen name="header_icon_height">40dp</dimen>
+
+
+    <dimen name="map_button_width">67dp</dimen>
+    <dimen name="map_button_height">75dp</dimen>
+    <dimen name="map_button_margin_bottom">50dp</dimen>
+    <dimen name="map_menu_width">277dp</dimen>
+    <dimen name="map_menu_edge_height">88dp</dimen>
+    <dimen name="map_menu_middle_height">67dp</dimen>
+
+    <dimen name="filter_button_width">53dp</dimen>
+    <dimen name="filter_button_height">33dp</dimen>
+</resources>

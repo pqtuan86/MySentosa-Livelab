@@ -1,0 +1,9 @@
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item android:state_pressed="true"
+
+        android:drawable="@drawable/map_bt_showbookmarks_pressed" /> <!-- pressed --> 
+
+    <item android:drawable="@drawable/map_bt_showbookmarks_normal" /> <!-- default/unchecked -->
+
+</selector>

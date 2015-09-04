@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="5dp"
+    android:paddingTop="5dp" >
+
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/selector_event_promo"
+        android:duplicateParentState="true"
+        android:padding="10dp" >
+
+        <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+            android:id="@+id/iv_event_promo_list_item_thumbnail"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="4"
+            android:src="@drawable/stub_thumb" />
+
+        <TextView
+            android:id="@+id/tv_event_promo_list_item_description"
+            style="@style/style_description"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="16"
+            android:duplicateParentState="true"
+            android:ellipsize="end"
+            android:gravity="center_vertical|left"
+            android:maxLines="4"
+            android:paddingLeft="10dp"
+            android:paddingRight="2dp"
+            android:textStyle="bold"
+            android:textSize="14sp"
+            android:textColor="@color/selector_description_small_text_color" />
+
+        <ImageView
+            android:id="@+id/iv_right_arrow"
+            android:layout_width="10dp"
+            android:layout_height="14dp"
+            android:layout_gravity="center"
+            android:layout_weight="1"
+            android:duplicateParentState="true"
+            android:src="@drawable/list_arrow" />
+    </LinearLayout>
+
+</FrameLayout>

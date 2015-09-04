@@ -1,0 +1,203 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">MySentosa</string>
+    <string name="facebook_app_id">308815345874436</string>
+    <string name="sender_id">825822902629</string>
+
+    <!-- HomeActivity -->
+    <string name="home_title">Highlights</string>
+    <string name="things_to_do">Things to do</string>
+    <string name="my_sentosa">My Sentosa</string>
+    <string name="bookmarks">Bookmarks</string>
+    <string name="profile_settings">Profile and Settings</string>
+    <string name="tickets">Tickets</string>
+    <string name="events">Events</string>
+    <string name="deals">Deals</string>
+    <string name="map">Map</string>
+    <string name="directions">Directions</string>
+    <string name="my_location">My Location</string>
+    <string name="my_bookmarks">My Bookmarks</string>
+    <string name="node_id">node_id</string>
+
+    <!-- InformationActivity -->
+    <string name="information">Information</string>
+    <string name="cancel">Cancel</string>
+    <string name="call">Call</string>
+    <string name="email">Email</string>
+    <string name="emergency_number">18007264377</string>
+    <string name="contact_number">+6567368672</string>
+    <string name="email_address">guest_services@sentosa.com.sg</string>
+    <string name="email_subject">Feedback from Sentosa app</string>
+    <string name="email_choose">Choose App to send email:</string>
+    <string name="link_getting_around_sentosa">http://sentosa-staging.2359media.net/Content/HTML/getting_around.html</string>
+    <string name="link_terms_conditions">http://www.sentosa.com.sg/en/Islander_TermsandConditions_/</string>
+    <string name="link_islander_register">https://islander.com.sg/Membership.aspx</string>
+    <string name="link_islander_renew">https://islander.com.sg/MembershipRenew.aspx</string>
+    <string name="getting_to_sentosa">Getting to Sentosa</string>
+    <string name="getting_around_sentosa">Getting around Sentosa</string>
+    <string name="sentosa_island_privileges">Sentosa Islander Privileges</string>
+    <string name="register">Register</string>
+    <string name="renew_membership">Renew Membership</string>
+
+    <!-- Notification Alert -->
+    <string name="notification_alert_title">\"MySentosa\" Would Like to Send You Push Notifications</string>
+    <string name="notification_alert_detail">Notifications may include alerts, sounds and icon badges. The content may include targeted marketing message or deals, as well as general announcement. These can be configured or disabled in Settings.\n\nClick here to view the Mobile App Data Protection Policy.</string>
+    <string name="here">here</string>
+    <string name="protection_policy_url">http://www.sentosa.com.sg/en/mobileapp-data-protection-policy/</string>
+
+    <!-- facebook share messages -->
+    <string name="facebook_check_server_error">Error logging into facebook. Please check if network is available.</string>
+    <string name="facebook_oauth_error">Error accessing your facebook account. Please login to your account and post again.</string>
+    <string name="facebook_posting_message">Posting message to your wall..</string>
+    <string name="facebook_successful_post">Message posted!</string>
+
+    <!-- twitter share messages -->
+    <string name="twitter_oauth_error">Error accessing your twitter account. Please login to your account and post again.</string>
+    <string name="twitter_tweet_empty">Nothing to tweet! Please enter a message.</string>
+    <string name="twitter_tweet_too_long">Your tweet exceeds 140 characters!</string>
+    <string name="twitter_posting_tweet">Sending your tweet..</string>
+    <string name="twitter_tweet_succeful">Tweet sent!</string>
+    <string name="twitter_tweet_error">Cannot send tweet! Please check network status. </string>
+    <string name="twitter_duplicate_tweet">Duplicate tweet!</string>
+    <string name="twitter_access_revoked">Access to app has been revoked. Please re-login!</string>
+
+    <!-- Tickets messages -->
+    <string name="purchased_no_items">No tickets purchased yet</string>
+    <string name="cart_no_items">No item in shopping cart</string>
+    <string name="ticket_button_next">Next</string>
+    <string name="ticket_button_purchase">Purchase</string>
+    <string name="ticket_button_check">CheckOut</string>
+    <string name="ticket_button_add_cart">Add To Cart</string>
+    <string name="ticket_error_message">Please add at least 1 ticket</string>
+    <string name="ticket_success_message">Added to cart successfully!</string>
+    <string name="ticket_button_cancel">Cancel</string>
+    <string name="ticket_button_done">Done</string>
+    <string name="ticket_child">Child</string>
+    <string name="ticket_standard">Standard</string>
+    <string name="ticket_adult">Adult</string>
+    <string name="ticket_imp_note">Important Notes</string>
+    <string name="ticket_cart_adult">%1$s x Adult ticket - S$ %2$s</string>
+    <string name="ticket_cart_child">%1$s x Child ticket - S$ %2$s</string>
+    <string name="ticket_cart_standard">%1$s x Standard ticket - S$ %2$s</string>
+    <string name="ticket_cart_success">Success!</string>
+    <string name="ticket_cart_item_added_success">Items have been added to your cart!</string>
+    <string name="ticket_cart_more_deal">More deals</string>
+    <string name="ticket_cart_checkout">Checkout</string>
+    
+    <string name="ticket_cart_format">%1$s x %2$s ticket - S$ %3$s</string>
+    <string name="ticket_cart_format_2">%1$sx %2$s (%3$s) ticket - S$ %4$s</string>
+     
+    <string name="ticket_cart_adult_value">S$%1$s</string>
+    <string name="ticket_cart_child_value">S$%1$s</string>
+    <string name="ticket_cart_standard_value">S$%1$s</string>
+    
+    <string name="ticket_cart_total">Total Sum</string>
+    <string name="ticket_cart_total_value">S$%1$s</string>
+    
+    <string name="ok">OK</string>
+    <string name="tcontinue">Continue</string>
+    <string name="ticket_selection_event_date">Date of Visit</string>
+    <string name="ticket_selection_event_select">Select Ticket</string>
+    <string name="ticket_selection_event_qty">Quantity</string>
+    <string name="ticket_selection_event_top">Top-up!</string>
+    <string name="ticket_selection_event_promo">Promo Code</string>
+    <string name="ticket_selection_event_select_ticket">S$ %1$s</string>
+    <string name="ticket_promo_error_message">Promo Code is not valid</string>
+    <string name="ticket_add_message">No ticket selected</string>
+    <string name="ticket_event_date">Date: %1$s</string>
+    <string name="ticket_is_not_available"><b>The following ticket is not available </b>\n</string>
+    <string name="ticket_are_not_available"><b>The following tickets are not available </b>\n</string>
+    <string name="ticket_event_error_message">Please purchase at least 1 ticket \n(does not include topups)</string>
+    <string name="ticket_cart_event">%1$s x %2$s - S$ %3$s</string>
+    <string name="cart_name">Name<sup>*</sup>:</string>
+    <string name="cart_pwnumber">NRIC/FIN/Passport number<sup>*</sup>:</string>
+    <string name="cart_birth">Date of Birth:</string>
+    <string name="cart_email">Email<sup>*</sup>:</string>
+    <string name="cart_nationality">Nationality:</string>
+    <string name="cart_mobile">Mobile<sup>*</sup>:</string>
+    <string name="cart_term">I accept Terms &amp; Conditions</string>
+    <string name="cart_sign">Sign Up for Newsletter</string>
+    <string name="val_name">Name is invalid</string>
+    <string name="val_passport">NRIC is invalid</string>
+    <string name="val_email">Email is invalid</string>
+    <string name="val_mob">Mobile number is invalid</string>
+    <string name="val_terms">Terms &amp; Conditions not accepted</string>
+    <string name="ticket_grand_total">Grand Total</string>
+    <string name="ticket_bk_fee">Booking fee</string>
+    <string name="ticket_shopingcart_format">%1$s x  %2$s - S$ %3$s</string>
+    <string name="item_remove_message">Remove Item</string>
+    <string name="item_remove_confirmation">Are you sure you want to remove item?</string>
+    <string name="no">No</string>
+    <string name="yes">Yes</string>
+    <string name="ticket_fail_remove">Remove Items &amp; Proceed</string>
+    <string name="ticket_fail_for_checkout">Tickets Failed For Check Out</string>
+    <string name="sold_out">Some or all tickets have already been sold out</string>
+    <string name="purchase_successfully">Ticket purchase successful</string>
+    <string name="purchase_unsuccessfully">Ticket purchase unsuccessful</string>
+    <string name="purchase_detail_text">Please approach our friendly staff with this confirmation slip at any Sentosa Ticketing Counters to collect your tickets!</string>
+    <string name="purchase_date">Date of Purchase:</string>
+    <string name="event_date">Date of Event:</string>
+    <string name="pincode">Pincode:</string>
+    <string name="mandatory"><sup>*</sup>-Mandatory Fields</string>
+    <string name="email_text">An email with transaction details will be emailed to you shortly.</string>
+    <string name="ticket_purchase_avail_text">Tickets are valid for 3 months from date of purchase and will expire afterwards.</string>
+
+    <string name="error_ticketing_kill_switch">This ticketing module is currently undergoing maintenance. Sorry for any inconvenience caused. We will be back in a short while!\nTickets are still available at Sentosa Ticketing Counters.</string>
+    
+    <string name="islander_first_time_login">By accessing this section specially for Sentosa Islander members, I acknowledge that I have read and agree to the Terms &amp; Conditions of use as a member.</string>
+    <string name="terms_conditions">Terms &amp; Conditions</string>
+    <string name="islander_title">Unlimited fun all year round!\nThere\'s never a dull moment\nwhen you are a Sentosa Islander!</string>
+    <string name="islander_title_link">Privileges</string>
+    <string name="islander_login_now">Login now</string>
+    <string name="islander_register">Register</string>
+    <string name="islander_renew">Renew</string>
+    <string name="islander_signup">Sign up as a Sentosa Islander</string>
+    <string name="islander_sign_me_up">Sign me up!</string>
+    <string name="islander_id">Membership ID</string>
+    <string name="islander_dob">Date of Birth</string>
+    <string name="islander_login">Login</string>
+    <string name="islander_personal_details">Personal Details</string>
+    <string name="islander_renew_membership">Renew Membership</string>
+    <string name="islander_my_claimed_deals">My Claimed Deals</string>
+    <string name="islander_islander_deals">Islander Exclusive</string>
+    <string name="islander_profile">Profile</string>
+    <string name="islander_logout">Log out</string>
+    <string name="islander_full_name">Full Name:</string>
+    <string name="islander_account_id">Membership ID:</string>
+    <string name="islander_account_nric">NRIC:</string>
+    <string name="islander_email">Email:</string>
+    <string name="islander_mobile">Mobile:</string>
+    <string name="islander_address">Address:</string>
+    <string name="islander_date_of_birth">Date of Birth:</string>
+    <string name="islander_edit">Edit</string>
+    <string name="islander_personal_detail">Personal Details</string>
+    <string name="islander_edit_profile">Edit Profile</string>
+    <string name="islander_save">Save</string>
+    <string name="islander_login_title">Please log in to your Islander account to enjoy the exclusive deal!</string>
+    <string name="islander_claim">Claim</string>
+    <string name="islander_scan">Scan</string>
+    <string name="islander_claimed">Claimed</string>
+    <string name="islander_participate">Participate</string>
+    <string name="islander_participated">Participated</string>
+    <string name="islander_participated_success">Participated successfully!</string>
+    <string name="islander_claimed_success_detail">If you are one of the lucky winners, we will contact you with information on collecting your reward.\n\nGood luck!</string>
+    <string name="islander_exlusive">Islander Exclusive</string>
+    <string name="islander_button_cancel">Cancel</string>
+    <string name="islander_reward_left_unclaimed">rewards left unclaimed</string>
+    
+    <!-- Map -->
+    <string name="map_added_categories">New Categories added on the map!</string>
+    
+    <!-- Profile and Setting -->
+    <string name="profile_fill_required">Please fill in your details before proceeding</string>
+
+
+    <!-- Coupons / PromotionActivity -->
+    <string name="coupons">Coupons</string>
+    <string name="no_promotion">There is no promotion at this moment. Please come back after a short while.</string>
+
+    <string name="no_internet_connection_error_message">It seems you are not connected to the internet. Please check your connection and try again.</string>
+    <string name="no_internet_connection_error_title">No Internet Connection!</string>
+    <string name="no_internet_connection_error_button">OK</string>
+</resources>

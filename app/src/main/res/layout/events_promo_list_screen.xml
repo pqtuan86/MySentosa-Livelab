@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/root"
+    style="@style/MatchParent"
+    android:background="@color/bg_gradient_white">
+
+    <FrameLayout
+        style="@style/FitWidth"
+        android:id="@+id/header"
+        android:layout_gravity="top|center_horizontal">
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/topbar"
+        style="@style/FitWidth"
+        android:layout_below="@+id/header"
+        android:layout_marginBottom="@dimen/regular_margin"
+        android:layout_marginTop="@dimen/regular_margin"
+        android:gravity="center_horizontal"
+        android:orientation="horizontal"
+        android:visibility="visible">
+
+        <ImageView
+            android:id="@+id/general"
+            style="@style/dealTabs"
+            android:src="@drawable/tab_general_left_grey" />
+
+        <ImageView
+            android:id="@+id/islander_exclusive"
+            style="@style/dealTabs"
+            android:src="@drawable/tab_islander_right_grey" />
+    </LinearLayout>
+
+    <ListView
+        android:id="@+id/list"
+        style="@style/MatchParent"
+        android:layout_below="@id/topbar"
+        android:cacheColorHint="#000000"
+        android:divider="#d2d2d2"
+        android:dividerHeight="1dp"
+        android:paddingTop="@dimen/tiny_margin" />
+
+    <FrameLayout
+        style="@style/WrapContent"
+        android:layout_centerInParent="true">
+
+        <include layout="@layout/loading_layout" />
+    </FrameLayout>
+
+    <FrameLayout
+        android:id="@+id/search_frame"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+        <fragment
+            android:id="@+id/search_fragment"
+            android:name="com.mysentosa.android.sg.fragments.SearchFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:layout="@layout/fragment_search" />
+
+    </FrameLayout>
+
+</RelativeLayout>

@@ -1,0 +1,315 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.mysentosa.android.sg">
+
+    <supports-screens
+        android:anyDensity="true"
+        android:largeScreens="true"
+        android:normalScreens="true" />
+
+    <uses-permission android:name="android.permission.NFC" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CALL_PHONE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+    <uses-permission android:name="android.permission.GET_ACCOUNTS" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.CAMERA" />
+    <uses-permission android:name="android.permission.FLASHLIGHT" />
+
+    <!-- REQUIRED for C2DM -->
+    <uses-permission android:name="com.mysentosa.android.sg.permission.C2D_MESSAGE" />
+    <!-- This app has permission to register and receive message -->
+    <uses-permission android:name="com.google.android.c2dm.permission.RECEIVE" />
+    <!-- Only this application can receive the messages and registration result -->
+    <permission
+        android:name="com.mysentosa.android.sg.permission.C2D_MESSAGE"
+        android:protectionLevel="signature" />
+
+    <!-- Don't require camera, as this requires a rear camera. This allows it to work on the Nexus 7 -->
+    <uses-feature
+        android:name="android.hardware.camera"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.front"
+        android:required="false" />
+    <!-- <uses-feature android:name="android.hardware.camera.any"/> -->
+    <uses-feature
+        android:name="android.hardware.camera.autofocus"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.camera.flash"
+        android:required="false" />
+    <uses-feature android:name="android.hardware.screen.landscape" />
+    <uses-feature
+        android:name="android.hardware.location.network"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.location.gps"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.telephony"
+        android:required="false" />
+    <uses-feature
+        android:name="android.hardware.wifi"
+        android:required="false" />
+
+    <!--<instrumentation-->
+    <!--android:name="android.test.InstrumentationTestRunner"-->
+    <!--android:targetPackage="com.mysentosa.android.sg" />-->
+
+
+    <application
+        android:name="com.mysentosa.android.sg.SentosaApplication"
+        android:hardwareAccelerated="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:theme="@style/AppTheme">
+
+        <uses-library
+            android:name="android.test.runner"
+            android:required="false" />
+
+        <activity
+            android:name="com.mysentosa.android.sg.SplashScreenActivity"
+            android:icon="@drawable/icon"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN"></action>
+
+                <category android:name="android.intent.category.LAUNCHER"></category>
+            </intent-filter>
+        </activity>
+
+        <activity
+            android:name="com.mysentosa.android.sg.NavigationManagerActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.HomeActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.EventsAndPromotionsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.ProfileAndSettingsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.MapActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketSelectionActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketSelectionEventActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketAddCartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketEventAddCartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketShopingCartActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketCheckoutActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketTermsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketFailedCheckout"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketPaymentActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.TicketPurchaseDetailActivity"
+            android:screenOrientation="portrait" />
+        <!--<activity-->
+        <!--android:name="com.mysentosa.android.sg.ItineraryActivity"-->
+        <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.mysentosa.android.sg.MyBookmarksActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.DirectionsActivity"
+            android:launchMode="singleTop"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.nfc.action.NDEF_DISCOVERED" />
+                <category android:name="android.intent.category.DEFAULT" />
+                <data
+                    android:host="r.2359media.net"
+                    android:pathPrefix="/sentosaar"
+                    android:scheme="http" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mysentosa.android.sg.InformationActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.ThingsToDo_MySentosaActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderLoginActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderUserProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderUserDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderEditProfileActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderMyClaimedDealsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderSpecialDealActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.IslanderDealsActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.PromotionsActivity"
+            android:screenOrientation="portrait" />
+        <!--<activity-->
+        <!--android:name="com.google.zxing.client.android.camera.CaptureActivity"-->
+        <!--android:screenOrientation="portrait" />-->
+        <activity
+            android:name="com.mysentosa.android.sg.TrafficUpdatesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.NodeDetailActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.EventsAndPromotionsDetailActivity"
+            android:screenOrientation="portrait">
+            <intent-filter>
+                <action android:name="android.intent.action.VIEW" />
+
+                <category android:name="android.intent.category.DEFAULT" />
+                <category android:name="android.intent.category.BROWSABLE" />
+
+                <data android:scheme="com-company2359-sentosa" />
+            </intent-filter>
+        </activity>
+        <activity
+            android:name="com.mysentosa.android.sg.ThingsToDoCategoryListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.mysentosa.android.sg.MapFilterListActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="stateHidden" />
+        <activity
+            android:name="com.mysentosa.android.sg.WebPageActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.ImpNotesActivity"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name="com.mysentosa.android.sg.NFCActivity"
+            android:screenOrientation="portrait">
+
+            <!-- <intent-filter>
+				<action android:name="android.nfc.action.NDEF_DISCOVERED" />
+				<category android:name="android.intent.category.DEFAULT" />
+				<data android:scheme="http"
+				    android:host="r.2359media.net"
+				    android:pathPrefix="/sentosaar" />
+			</intent-filter> -->
+        </activity>
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.Translucent.NoTitleBar" />
+
+        <provider
+            android:name="com.mysentosa.android.sg.provider.SentosaContentProvider"
+            android:authorities="com.mysentosa.android.sg.provider"
+            android:exported="false" />
+
+        <!-- For Push Notification -->
+        <!-- REQUIRED -->
+        <receiver
+            android:name="com.urbanairship.CoreReceiver"
+            android:exported="false">
+            <intent-filter android:priority="-999">
+                <action android:name="com.urbanairship.push.OPENED" />
+                <category android:name="com.mysentosa.android.sg" />
+            </intent-filter>
+        </receiver>
+
+        <!-- REQUIRED for GCM -->
+        <receiver
+            android:name="com.urbanairship.push.GCMPushReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+
+            <!-- Receive the actual message -->
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+
+                <category android:name="com.mysentosa.android.sg" />
+            </intent-filter>
+            <!-- Receive the registration id -->
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.REGISTRATION" />
+
+                <category android:name="com.mysentosa.android.sg" />
+            </intent-filter>
+        </receiver>
+
+        <!-- REQUIRED -->
+        <service
+            android:name="com.urbanairship.push.PushService"
+            android:process=":com.urbanairship.push.process" />
+
+        <!--<service-->
+        <!--android:name="com.urbanairship.push.PushWorkerService"-->
+        <!--android:label="Push Notification Worker Service" />-->
+
+        <service
+            android:name="com.urbanairship.analytics.EventService"
+            android:label="Event Service" />
+        <service android:name=".services.GcmIntentService" />
+        <!-- This is required for persisting preferences related to push and location -->
+
+        <!-- MODIFICATION REQUIRED - Use your package name + ".urbanairship.provider" in the android:authorities -->
+                
+        <provider
+            android:name="com.urbanairship.UrbanAirshipProvider"
+            android:authorities="com.mysentosa.android.sg.urbanairship.provider"
+            android:exported="false"
+            android:multiprocess="true" />
+
+        <!-- OPTIONAL, if you want to receive push, push opened and registration completed intents -->
+        <receiver android:name="com.mysentosa.android.sg.receiver.IntentReceiver" />
+        <receiver
+            android:name=".receiver.GcmBroadcastReceiver"
+            android:permission="com.google.android.c2dm.permission.SEND">
+            <intent-filter>
+                <action android:name="com.google.android.c2dm.intent.RECEIVE" />
+                <category android:name="com.mysentosa.android.sg" />
+            </intent-filter>
+        </receiver>
+    </application>
+
+</manifest>

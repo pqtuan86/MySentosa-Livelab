@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/root"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:background="@color/bg_gradient_white" >
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="top|center_horizontal" >
+
+        <RelativeLayout
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content" >
+
+            <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+                android:id="@+id/iv_detail_item"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:src="@drawable/stub_large" />
+
+            <TextView
+                android:id="@+id/tv_title"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_alignBottom="@+id/iv_detail_item"
+                android:background="@drawable/ticket_black_transparent"
+                android:gravity="bottom"
+                android:paddingBottom="5dp"
+                android:paddingLeft="10dp"
+                android:singleLine="true"
+                android:textColor="@android:color/white"
+                android:textSize="22sp" />
+
+            <ProgressBar
+                android:id="@+id/pb_loading"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:visibility="gone"
+                android:layout_centerVertical="true" />
+        </RelativeLayout>
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <LinearLayout
+        android:id="@+id/layout_title_exclusive"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/header"
+        android:orientation="horizontal"
+        android:paddingBottom="@dimen/bigger_regular_margin"
+        android:paddingLeft="@dimen/regular_margin"
+        android:paddingTop="@dimen/bigger_regular_margin"
+        android:visibility="gone" >
+
+        <TextView
+            android:id="@+id/tv_islander_exclusive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/islander_exlusive"
+            android:textSize="@dimen/text_size_large" />
+
+        <ImageView
+            android:layout_width="@dimen/islander_star_size"
+            android:layout_height="@dimen/islander_star_size"
+            android:layout_marginLeft="@dimen/tiny_spacing"
+            android:scaleType="fitXY"
+            android:src="@drawable/ico_islander_star" />
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/tv_description"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_above="@+id/tv_onsite_reward_left"
+        android:layout_below="@+id/layout_title_exclusive"
+        android:layout_margin="10dp"
+        android:lineSpacingExtra="5dp"
+        android:scrollbars="vertical"
+        android:textColor="@android:color/black"
+        android:textSize="16sp" />
+
+    <Button
+        android:id="@+id/btn_purchase"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginRight="10dp"
+        android:background="@drawable/selector_standard_button"
+        android:text="@string/ticket_button_purchase"
+        android:textColor="@android:color/white"
+        android:textStyle="bold" />
+
+    <TextView
+        android:id="@+id/tv_onsite_reward_left"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_above="@id/btn_purchase"
+        android:layout_centerHorizontal="true"
+        android:textSize="@dimen/text_size_small"
+        android:layout_marginBottom="@dimen/tiny_margin"
+        android:visibility="gone" />
+
+</RelativeLayout>

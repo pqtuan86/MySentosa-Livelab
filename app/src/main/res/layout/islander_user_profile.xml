@@ -1,0 +1,152 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <RelativeLayout
+        android:id="@+id/user_detail_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/bg_color_orange_islander" >
+
+        <com.mysentosa.android.sg.custom_views.AspectRatioImageView
+            android:id="@+id/im_main_icon"
+            android:layout_width="@dimen/islander_user_profile_picture_size"
+            android:layout_height="0dp"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/large_margin"
+            android:scaleType="fitXY"
+            android:src="@drawable/dummy_profile_pic" />
+
+        <TextView
+            android:id="@+id/tv_user_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/im_main_icon"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/regular_margin"
+            android:gravity="center"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/text_size_user_name" />
+
+        <TextView
+            android:id="@+id/tv_user_member_id"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_user_name"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/regular_margin"
+            android:gravity="center"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/text_size_small" />
+
+        <TextView
+            android:id="@+id/tv_user_expire_day"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/tv_user_member_id"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="@dimen/tiny_margin"
+            android:layout_marginBottom="@dimen/tiny_margin"
+            android:gravity="center"
+            android:textColor="@color/text_color_white"
+            android:textSize="@dimen/text_size_small" />
+    </RelativeLayout>
+
+    <FrameLayout
+        android:id="@+id/header"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" >
+
+        <include layout="@layout/title_layout" />
+    </FrameLayout>
+
+    <ScrollView
+        android:id="@+id/sv_bottom"
+        android:layout_width="match_parent"
+        android:layout_height="fill_parent"
+        android:layout_below="@id/user_detail_part" >
+
+        <LinearLayout
+            android:id="@+id/more_detail_part"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <TextView
+                android:id="@+id/tv_personal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_event_promo_list"
+                android:drawableRight="@drawable/accordian_arrow_right"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/regular_margin"
+                android:paddingLeft="@dimen/bigger_regular_margin"
+                android:paddingTop="@dimen/regular_margin"
+                android:text="@string/islander_personal_details"
+                android:textSize="@dimen/text_size_large" />
+
+            <include layout="@layout/silver_line_seperate" />
+
+            <TextView
+                android:id="@+id/tv_renew"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_event_promo_list"
+                android:drawableRight="@drawable/accordian_arrow_right"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/regular_margin"
+                android:paddingLeft="@dimen/bigger_regular_margin"
+                android:paddingTop="@dimen/regular_margin"
+                android:text="@string/islander_renew_membership"
+                android:textSize="@dimen/text_size_large" />
+
+            <include layout="@layout/silver_line_seperate" />
+
+            <TextView
+                android:id="@+id/tv_my_claim"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_event_promo_list"
+                android:drawableRight="@drawable/accordian_arrow_right"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/regular_margin"
+                android:paddingLeft="@dimen/bigger_regular_margin"
+                android:paddingTop="@dimen/regular_margin"
+                android:text="@string/islander_my_claimed_deals"
+                android:textSize="@dimen/text_size_large" />
+
+            <include layout="@layout/silver_line_seperate" />
+            
+            <TextView
+                android:id="@+id/tv_islander_deals"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_event_promo_list"
+                android:drawableRight="@drawable/accordian_arrow_right"
+                android:gravity="center_vertical"
+                android:paddingBottom="@dimen/regular_margin"
+                android:paddingLeft="@dimen/bigger_regular_margin"
+                android:paddingTop="@dimen/regular_margin"
+                android:text="@string/islander_islander_deals"
+                android:textSize="@dimen/text_size_large" />
+
+            <include layout="@layout/silver_line_seperate" />
+            
+            <!-- A blank row to avoid the main wheel bottom menu -->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/selector_event_promo_list"
+                android:drawableRight="@drawable/accordian_arrow_right"
+                android:gravity="center_vertical"
+                android:visibility="invisible"
+                android:paddingBottom="@dimen/regular_margin"
+                android:paddingLeft="@dimen/bigger_regular_margin"
+                android:paddingTop="@dimen/regular_margin"
+                android:text="@string/islander_islander_deals"
+                android:textSize="@dimen/text_size_large" />
+        </LinearLayout>
+    </ScrollView>
+
+</RelativeLayout>
