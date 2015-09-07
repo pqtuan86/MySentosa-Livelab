@@ -184,7 +184,7 @@ public class EventsAndPromotionsActivity extends BaseActivity implements LoaderC
                 Promotion promotion = listMastercard.get(position);
                 intent.putExtra(EventsPromotionsBase.ID_COL, promotion.getId());
                 intent.putExtra(EventsAndPromotionsDetailActivity.CURRENT_TYPE, EventsAndPromotionsDetailActivity.TYPE_PROMOTION);
-                intent.putExtra(EventsAndPromotionsDetailActivity.ISLANDER_CLAIMED_DEAL, new Gson().toJson(promotion));
+//                intent.putExtra(EventsAndPromotionsDetailActivity.ISLANDER_CLAIMED_DEAL, new Gson().toJson(promotion));
                 startActivity(intent);
                 break;
 
@@ -285,7 +285,7 @@ public class EventsAndPromotionsActivity extends BaseActivity implements LoaderC
 
     private void getPromotionEx() {
         mPBLoading.show();
-        GetPromotionRequest request = new GetPromotionRequest(GetPromotionRequest.URL_PROMOTION_EXCLUSIVE, new Listener<ArrayList<Promotion>>() {
+        GetPromotionRequest request = new GetPromotionRequest(this, GetPromotionRequest.URL_PROMOTION_EXCLUSIVE, new Listener<ArrayList<Promotion>>() {
             @Override
             public void onResponse(ArrayList<Promotion> response) {
                 if (response != null) {
@@ -306,7 +306,7 @@ public class EventsAndPromotionsActivity extends BaseActivity implements LoaderC
 
     private void getMastercard() {
         mPBLoading.show();
-        GetPromotionRequest request = new GetPromotionRequest(GetPromotionRequest.URL_PROMOTION_MASTERCARD, new Listener<ArrayList<Promotion>>() {
+        GetPromotionRequest request = new GetPromotionRequest(this, GetPromotionRequest.URL_PROMOTION_MASTERCARD, new Listener<ArrayList<Promotion>>() {
             @Override
             public void onResponse(ArrayList<Promotion> response) {
                 if(response != null) {

@@ -12,6 +12,6 @@ import java.util.ArrayList;
 public class GetPromotionExclusiveRequest extends GetPromotionRequest {
 
     public GetPromotionExclusiveRequest(Context context, Listener<ArrayList<Promotion>> listener, ErrorListener errorListener) {
-        super(URL_PROMOTION_EXCLUSIVE, listener, errorListener);
+        super(context, URL_PROMOTION_EXCLUSIVE, listener, errorListener);
     }
 }

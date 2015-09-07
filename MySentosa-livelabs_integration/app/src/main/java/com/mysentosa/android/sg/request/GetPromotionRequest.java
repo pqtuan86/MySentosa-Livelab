@@ -1,5 +1,7 @@
 package com.mysentosa.android.sg.request;
 
+import android.content.Context;
+
 import com.android.volley.NetworkResponse;
 import com.android.volley.ParseError;
 import com.android.volley.Request;
@@ -8,6 +10,7 @@ import com.android.volley.toolbox.HttpHeaderParser;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 import com.mysentosa.android.sg.models.Promotion;
+import com.mysentosa.android.sg.provider.utils.JSONParseUtil;
 import com.mysentosa.android.sg.utils.Const;
 import com.mysentosa.android.sg.utils.HttpHelper;
 import com.mysentosa.android.sg.utils.LogHelper;
@@ -30,9 +33,13 @@ public class GetPromotionRequest extends Request<ArrayList<Promotion>> {
     public static final String URL_PROMOTION_MASTERCARD = HttpHelper.BASE_ADDRESSV2 + "promotions/mastercard";
 
     private final Response.Listener<ArrayList<Promotion>> listener;
+    private Context mContext;
+    private String url;
 
-    public GetPromotionRequest(String url, Response.Listener<ArrayList<Promotion>> listener, Response.ErrorListener errorListener) {
+    public GetPromotionRequest(Context context, String url, Response.Listener<ArrayList<Promotion>> listener, Response.ErrorListener errorListener) {
         super(Method.GET, url, errorListener);
+        this.url = url;
+        mContext = context;
         this.listener = listener;
     }
 
@@ -41,11 +48,14 @@ public class GetPromotionRequest extends Request<ArrayList<Promotion>> {
         try {
             String json = new String(response.data, HttpHeaderParser.parseCharset(response.headers));
             LogHelper.d(TAG, "promotions: " + json);
-
-            int status = new JSONObject(json).optInt(Const.API_ISLANDER_STATUS_CODE, -1);
+            JSONObject rootObj = new JSONObject(json);
+            int status = rootObj.optInt(Const.API_ISLANDER_STATUS_CODE, -1);
             if (status == 0) {
-                String jsonPromotion = new JSONObject(json).getJSONObject(Const.API_ISLANDER_DATA).getJSONArray(Const.API_ISLANDER_PROMOTIONS).toString();
-
+                String jsonPromotion = rootObj.getJSONObject(Const.API_ISLANDER_DATA).getJSONArray(Const.API_ISLANDER_PROMOTIONS).toString();
+                if (url.compareTo(URL_PROMOTION_MASTERCARD) == 0) {
+                    JSONParseUtil jsonParser = new JSONParseUtil(mContext);
+                    jsonParser.parsingEventPromoJsonData(rootObj.getJSONObject(Const.API_ISLANDER_DATA).getJSONArray(Const.API_ISLANDER_PROMOTIONS), false);
+                }
                 Gson gson = new Gson();
                 Type collectionType = new TypeToken<Collection<Promotion>>() {
                 }.getType();
