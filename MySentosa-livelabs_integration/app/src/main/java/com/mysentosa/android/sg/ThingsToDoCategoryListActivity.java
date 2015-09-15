@@ -48,7 +48,11 @@ public class ThingsToDoCategoryListActivity extends BaseActivity {
         int pickedID = getIntent().getIntExtra(NavigationManagerActivity.ACTIVITY_TO_START_ID, -1);
 
         if (SentosaUtils.isValidString(currentCategory)) {
-            headerTitle.setText(currentCategory);
+            if ("Shopping".compareTo(currentCategory) == 0) {
+                headerTitle.setText(getString(R.string.retail_services));
+            } else {
+                headerTitle.setText(currentCategory);
+            }
         }
 
         headerSearch.setVisibility(View.VISIBLE);

@@ -37,7 +37,11 @@ public class ThingsToDo_MySentosa_ArrayAdapter extends ArrayAdapter<ThingsToDo_M
 		ThingsToDo_MySentosa_ListItem item = items.get(position);
 		if (item != null) {
 			TextView title = (TextView) v.findViewById(R.id.tv_title);
-			title.setText(item.getTite());
+			if ("Shopping".compareTo(item.getTite()) == 0) {
+				title.setText(context.getResources().getString(R.string.retail_services));
+			} else {
+				title.setText(item.getTite());
+			}
 			ImageView img = (ImageView) v.findViewById(R.id.iv_icon);
 			img.setImageResource(item.getImgResId());
 			v.setTag(item.getTag());

@@ -200,4 +200,7 @@
     <string name="no_internet_connection_error_message">It seems you are not connected to the internet. Please check your connection and try again.</string>
     <string name="no_internet_connection_error_title">No Internet Connection!</string>
     <string name="no_internet_connection_error_button">OK</string>
+
+    <string name="retail_services">Retail and Services</string>
+    <string name="master_card_promotions">Mastercard® Promotions</string>
 </resources>

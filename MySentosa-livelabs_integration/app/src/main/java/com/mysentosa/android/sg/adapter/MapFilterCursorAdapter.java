@@ -47,7 +47,12 @@ public class MapFilterCursorAdapter extends CursorAdapter {
 	public void bindView(View view, Context context, Cursor cursor) {
 		ViewHolder holder = (ViewHolder) view.getTag();
 		String category_name = cursor.getString(categoryColIndex);
-		holder.tvTitle.setText(category_name);
+		if ("Shopping".compareTo(category_name) == 0) {
+			// Rename category's name.
+			holder.tvTitle.setText(context.getResources().getString(R.string.retail_services));
+		} else {
+			holder.tvTitle.setText(category_name);
+		}
 		int iconId = SentosaUtils.getResourceId(mContext, "icon_"+category_name.replace(" ", "").replace("'", "").toLowerCase());
 		if(iconId == 0) iconId = R.drawable.stub_thumb;
 		holder.ivIcon.setImageResource(iconId);
