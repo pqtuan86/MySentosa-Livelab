@@ -29,9 +29,9 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 	private String title, detail;
 	private final int COLLAPSED = 0, EXPANDED = 1;
 	private int type = -1;
-	private boolean isEventPromotion = false;
+	private boolean isEventPromotion = false, isMasterCardType = false;
 	public static final int DETAIL_TEXT_VIEW = 25232523, EVENT = 0, PROMOTION = 1, LOCATION = 2;
-	private final String[] titleList = {"Related Events","Related Promotions","Related Attractions"};
+	private final String[] titleList = {"Related Events","Promotions","Related Attractions"};
 	public static final String DESCRIPTION = "Description";
 	
 	public Node_Event_PromoDetailCollapsibleView(Context context, String title, String detail) {
@@ -42,17 +42,22 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 		initializeView(null);
 	}
 	
-	public Node_Event_PromoDetailCollapsibleView(Context context, int type, Cursor c) {
+	public Node_Event_PromoDetailCollapsibleView(Context context, int type, Cursor c, boolean isMasterCardType) {
 		super(context,null);
 		this.mContext = context;
 		this.type = type;
-		this.title = titleList[type];
+		this.isMasterCardType = isMasterCardType;
+		if (type == 1 && this.isMasterCardType) {
+			this.title = context.getResources().getString(R.string.master_card_promotions);
+		} else {
+			this.title = titleList[type];
+		}
 		this.isEventPromotion = true;
 		initializeView(c);
 	}
 
 	public Node_Event_PromoDetailCollapsibleView(Context context, AttributeSet attrs) {
-		super(context, attrs,0);
+		super(context, attrs, 0);
 	}
 
 	public Node_Event_PromoDetailCollapsibleView(Context context, AttributeSet attrs, int defStyle) {
@@ -155,6 +160,7 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 						mContext.startActivity(intent);
 					} else {
 						Intent intent = new Intent((EventsAndPromotionsDetailActivity)mContext,NodeDetailActivity.class);
+						intent.putExtra(NodeDetailActivity.TYPE_MASTERCARD, isMasterCardType);
 						intent.putExtra(Const.NODE_ID, ((Long) v.getTag()).intValue());
 						intent.putExtra(NodeDetailActivity.SOURCE_ACTIVITY,NodeDetailActivity.ACTIVITY_EVENT_PROMO);
 						intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

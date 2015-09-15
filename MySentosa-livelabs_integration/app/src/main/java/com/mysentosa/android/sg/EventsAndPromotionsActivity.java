@@ -184,6 +184,7 @@ public class EventsAndPromotionsActivity extends BaseActivity implements LoaderC
                 Promotion promotion = listMastercard.get(position);
                 intent.putExtra(EventsPromotionsBase.ID_COL, promotion.getId());
                 intent.putExtra(EventsAndPromotionsDetailActivity.CURRENT_TYPE, EventsAndPromotionsDetailActivity.TYPE_PROMOTION);
+                intent.putExtra(EventsAndPromotionsDetailActivity.TYPE_MASTERCARD, true);
 //                intent.putExtra(EventsAndPromotionsDetailActivity.ISLANDER_CLAIMED_DEAL, new Gson().toJson(promotion));
                 startActivity(intent);
                 break;

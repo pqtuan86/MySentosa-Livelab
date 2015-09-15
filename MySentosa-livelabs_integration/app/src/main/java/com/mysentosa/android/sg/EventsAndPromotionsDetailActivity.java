@@ -45,7 +45,7 @@ public class EventsAndPromotionsDetailActivity extends BaseActivity {
 
     public static final int INVALID_LOC = -1;
     public static final String CURRENT_TYPE = "CURRENT_TYPE", ISLANDER_CLAIMED_DEAL = "ISLANDER",
-            ID = "ID"; // ID is used to launch this activity
+            ID = "ID", TYPE_MASTERCARD = "MASTER_CARD"; // ID is used to launch this activity
     // from notification
     public static final int TYPE_EVENT = 0, TYPE_PROMOTION = 1;
     private int currentType = TYPE_EVENT;
@@ -68,6 +68,7 @@ public class EventsAndPromotionsDetailActivity extends BaseActivity {
 
     private boolean isFromIslanderClaimed = false;
     private Promotion currentPromotion;
+    private boolean isTypeMasterCard;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -95,6 +96,7 @@ public class EventsAndPromotionsDetailActivity extends BaseActivity {
         }
 
         if (!isFromIslanderClaimed) {
+            isTypeMasterCard = intent.getBooleanExtra(TYPE_MASTERCARD, false);
             boolean success = queryData(false);
             if (!success)
                 new LoadEventTask().execute();
@@ -386,7 +388,7 @@ public class EventsAndPromotionsDetailActivity extends BaseActivity {
 
     private void inflateLocationList(Cursor cursor) {
         if (cursor.getCount() != 0) {
-            View v = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.LOCATION, cursor);
+            View v = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.LOCATION, cursor, isTypeMasterCard);
             collapsiblesContainer.addView(v);
         }
     }
