@@ -6,6 +6,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.Color;
 import android.graphics.Typeface;
+import android.text.TextUtils;
 import android.text.util.Linkify;
 import android.util.AttributeSet;
 import android.util.TypedValue;
@@ -29,7 +30,7 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 	private String title, detail;
 	private final int COLLAPSED = 0, EXPANDED = 1;
 	private int type = -1;
-	private boolean isEventPromotion = false, isMasterCardType = false;
+	private boolean isEventPromotion = false;
 	public static final int DETAIL_TEXT_VIEW = 25232523, EVENT = 0, PROMOTION = 1, LOCATION = 2;
 	private final String[] titleList = {"Related Events","Promotions","Related Attractions"};
 	public static final String DESCRIPTION = "Description";
@@ -42,21 +43,17 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 		initializeView(null);
 	}
 	
-	public Node_Event_PromoDetailCollapsibleView(Context context, int type, Cursor c, boolean isMasterCardType) {
+	public Node_Event_PromoDetailCollapsibleView(Context context, int type, Cursor c) {
 		super(context,null);
 		this.mContext = context;
 		this.type = type;
-		this.isMasterCardType = isMasterCardType;
-		if (type == 1 && this.isMasterCardType) {
-			this.title = context.getResources().getString(R.string.master_card_promotions);
-		} else {
-			this.title = titleList[type];
-		}
+		this.title = titleList[type];
 		this.isEventPromotion = true;
 		initializeView(c);
 	}
 
 	public Node_Event_PromoDetailCollapsibleView(Context context, AttributeSet attrs) {
+
 		super(context, attrs, 0);
 	}
 
@@ -144,6 +141,11 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 		}
 		while(cursor.moveToNext()) {
 			this.detail = cursor.getString(cursor.getColumnIndex(type!=LOCATION?EventsPromotionsBase.TITLE_COL:NodeDetailsData.TITLE_COL));
+			if (type == PROMOTION) {
+				String dealType = cursor.getString(cursor.getColumnIndex(EventsPromotionsBase.DEAL_TYPE_COL));
+				if (!TextUtils.isEmpty(dealType) && "mastercard".compareTo(dealType) == 0)
+					this.detail = getContext().getResources().getString(R.string.master_card_promotions);
+			}
 			TextView tvDetail= getTextView(false, true);
 			long id = cursor.getLong(cursor.getColumnIndex(type!=LOCATION?EventsPromotionsBase.ID_COL:NodeDetailsData.NODE_ID_COL));
 			tvDetail.setTag(id);
@@ -160,7 +162,6 @@ public class Node_Event_PromoDetailCollapsibleView extends LinearLayout{
 						mContext.startActivity(intent);
 					} else {
 						Intent intent = new Intent((EventsAndPromotionsDetailActivity)mContext,NodeDetailActivity.class);
-						intent.putExtra(NodeDetailActivity.TYPE_MASTERCARD, isMasterCardType);
 						intent.putExtra(Const.NODE_ID, ((Long) v.getTag()).intValue());
 						intent.putExtra(NodeDetailActivity.SOURCE_ACTIVITY,NodeDetailActivity.ACTIVITY_EVENT_PROMO);
 						intent.setFlags(Intent.FLAG_ACTIVITY_REORDER_TO_FRONT);

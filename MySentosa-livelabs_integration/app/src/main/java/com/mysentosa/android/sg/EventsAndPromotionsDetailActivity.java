@@ -388,7 +388,7 @@ public class EventsAndPromotionsDetailActivity extends BaseActivity {
 
     private void inflateLocationList(Cursor cursor) {
         if (cursor.getCount() != 0) {
-            View v = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.LOCATION, cursor, isTypeMasterCard);
+            View v = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.LOCATION, cursor);
             collapsiblesContainer.addView(v);
         }
     }

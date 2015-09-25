@@ -50,7 +50,6 @@ public class NodeDetailActivity extends BaseActivity implements LoaderCallbacks<
     private static final String TAG = NodeDetailActivity.class.getSimpleName();
 
     public static final String IMAGE_PATH_SUFFIX = "/Content/Photos/AssetsAttractionAndroid/";
-    public static final String TYPE_MASTERCARD = "TYPE_MASTERCARD";
 
     @InjectView(R.id.header_title) TextView headerTitle;
     @InjectView(R.id.header_search) ImageView headerSearch;
@@ -80,7 +79,6 @@ public class NodeDetailActivity extends BaseActivity implements LoaderCallbacks<
 
     private ContentValues currentNodeDetails;
     private SearchFragment searchFragment;
-    private boolean isTypeMastercard;
 
     @Override
     public void onCreate(final Bundle savedInstanceState) {
@@ -90,7 +88,6 @@ public class NodeDetailActivity extends BaseActivity implements LoaderCallbacks<
 
         sourceActivity = getIntent().getIntExtra(SOURCE_ACTIVITY, ACTIVITY_MAP);
         nodeID = getIntent().getIntExtra(Const.NODE_ID, -1);
-        isTypeMastercard = getIntent().getBooleanExtra(TYPE_MASTERCARD, false);
 
         initializeViews();
         logFlurry(getIntent().getStringExtra(FlurryStrings.FlurryEventName), false);
@@ -359,7 +356,7 @@ public class NodeDetailActivity extends BaseActivity implements LoaderCallbacks<
             }
 
             if (cursor != null && cursor.getCount() > 0) {
-                eventsCollapsible = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.EVENT, cursor, isTypeMastercard);
+                eventsCollapsible = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.EVENT, cursor);
                 int index = collapsiblesContainer.getChildCount() - (promosCollapsible == null ? 0 : 1);
                 collapsiblesContainer.addView(eventsCollapsible, index);
             }
@@ -369,7 +366,7 @@ public class NodeDetailActivity extends BaseActivity implements LoaderCallbacks<
                 promosCollapsible = null;
             }
             if (cursor != null && cursor.getCount() > 0) {
-                promosCollapsible = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.PROMOTION, cursor, isTypeMastercard);
+                promosCollapsible = new Node_Event_PromoDetailCollapsibleView(this, Node_Event_PromoDetailCollapsibleView.PROMOTION, cursor);
                 collapsiblesContainer.addView(promosCollapsible);
             }
         }

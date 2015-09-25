@@ -178,6 +178,9 @@ public class JSONParseUtil {
                 data.optLong(EventsPromotionsBase.ID_JSON));
         epBase.put(EventsPromotionsBase.TITLE_COL,
                 data.optString(EventsPromotionsBase.TITLE_JSON));
+        if (data.has(EventsPromotionsBase.DEAL_TYPE_JSON))
+            epBase.put(EventsPromotionsBase.DEAL_TYPE_COL,
+                data.optString(EventsPromotionsBase.DEAL_TYPE_JSON));
         epBase.put(EventsPromotionsBase.DESCRIPTION_COL,
                 data.optString(EventsPromotionsBase.DESCRIPTION_JSON));
         epBase.put(EventsPromotionsBase.DETAIL_COL,
