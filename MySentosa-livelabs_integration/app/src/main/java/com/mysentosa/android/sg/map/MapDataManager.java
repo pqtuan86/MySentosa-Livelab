@@ -315,6 +315,8 @@ public class MapDataManager implements MapListener {
 
     public ArrayList<Direction> directionsTo(int toNodeId, boolean walkOnly, int fromNodeId) {
         Node fromNode = mGraph.getNode(fromNodeId);
+        if (fromNode.getOutGoingEdges().size() == 0)
+            return null;
         GeoPoint fromLoc = new GeoPoint(fromNode.getLatE6(), fromNode.getLongE6());
 
         return directionsTo(toNodeId, walkOnly, fromLoc);

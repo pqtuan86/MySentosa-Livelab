@@ -168,7 +168,8 @@ public class JSONParseUtil {
                 return Edge.TYPE_TRAM1;
             else if (color.equals("ORANGE"))
                 return Edge.TYPE_TRAM2;
-        }
+        } else if (type.equals("CABLEWAY"))
+            return Edge.TYPE_CABLE;
         return Edge.TYPE_WALK;
     }
 

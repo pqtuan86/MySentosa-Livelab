@@ -3,6 +3,7 @@ package com.mysentosa.android.sg;
 import android.app.Dialog;
 import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.database.Cursor;
 import android.location.Location;
@@ -42,6 +43,7 @@ import com.mysentosa.android.sg.map.MapDataManager;
 import com.mysentosa.android.sg.map.models.Direction;
 import com.mysentosa.android.sg.provider.utils.SentosaDatabaseStructure.ContentURIs;
 import com.mysentosa.android.sg.provider.utils.SentosaDatabaseStructure.Queries;
+import com.mysentosa.android.sg.utils.AlertHelper;
 import com.mysentosa.android.sg.utils.Const;
 import com.mysentosa.android.sg.utils.ResourceProxyImpl;
 import com.mysentosa.android.sg.utils.SentosaUtils;
@@ -363,6 +365,13 @@ public class DirectionsActivity extends BaseActivity {
 
             mAdapter.notifyDataSetChanged();
             directionsGenerated = true;
+        } else {
+            AlertHelper.showPopup(this, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialog, int which) {
+
+                }
+            }, "Can not find route");
         }
 
         if (directionsPosition > 0) {
