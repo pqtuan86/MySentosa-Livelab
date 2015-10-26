@@ -36,8 +36,9 @@ public class LiveLabsApi {
     public static final String PROD = "prod";
 
     private static final String DEV_BASE_URL = "https://athena.smu.edu.sg/hestia/sentosa";
-    private static final String PROD_BASE_URL = "https://tyr.livelabs.smu.edu.sg/sentosa";
+    private static final String PROD_BASE_URL = "https://tyr.livelabs.smu.edu.sg/sentosa"; //"https://tyr.livelabs.smu.edu.sg/odin/sentosa"; //(https://tyr.livelabs.smu.edu.sg/odin/
     private static final String TAG = "LIVELABS";
+
     /**
      * This interface help us to pass you the promotion list after a call to {@link #getPromotions(sg.edu.smu.livelabs.integration.LiveLabsApi.PromotionCallback callback)} method.
      * We recommend you to implement
@@ -67,7 +68,7 @@ public class LiveLabsApi {
         /**
          * @param message The message return by the server after success
          */
-        void onResult(String message);
+        void onResult(String status, String message);
 
         /**
          * Oops! => Simply alert users with the message.
@@ -415,7 +416,7 @@ public class LiveLabsApi {
         Map<String, String> params = new HashMap<>();
         params.put("devId", macAddressSHA1);
 
-        System.out.println("MAC SHA1: " + macAddressSHA1);
+//        System.out.println("MAC SHA1: " + macAddressSHA1);
         post("/get-promotions", params, new Net.HttpCallback() {
             @Override
             public void onSuccess(String respone) {
@@ -436,7 +437,8 @@ public class LiveLabsApi {
                                 promotionJson.getString("workingHour"), promotionJson.getString("status"),
                                 promotionJson.getString("merchantName"), promotionJson.getString("merchantLocation"),
                                 promotionJson.getString("merchantPhone"), promotionJson.getString("merchantEmail"),
-                                promotionJson.getString("merchantWeb"), promotionJson.getInt("campaignId"));
+                                promotionJson.getString("merchantWeb"), promotionJson.getInt("campaignId"),
+                                promotionJson.getInt("serial"));
 
                         promotions.add(promotion);
                     }
@@ -481,9 +483,9 @@ public class LiveLabsApi {
                 try {
                     JSONObject redeemPromotionJson = new JSONObject(response);
                     if (redeemPromotionJson.getString("status").toLowerCase().equals("failed")) {
-                        callback.onResult(redeemPromotionJson.getString("message"));
+                        callback.onResult("failed", redeemPromotionJson.getString("message"));
                     } else {
-                        callback.onResult("success");
+                        callback.onResult("success", redeemPromotionJson.getString("serial"));
                     }
 
                 } catch (Throwable t) {
@@ -508,7 +510,7 @@ public class LiveLabsApi {
     public void notificationTracking(String notificationId ){
         Map<String, String> params = new HashMap<>();
         params.put("devId", macAddressSHA1);
-        params.put("notificationId", notificationId );
+        params.put("notificationId", notificationId);
         post("/notification-tracking", params, new Net.HttpCallback() {
             @Override
             public void onSuccess(String respone) {
@@ -779,5 +781,41 @@ public class LiveLabsApi {
         promotionActivity= null;
         promotionActivityPaused = true;
         //sendAppStatusTracking("stop");
+    }
+
+    public boolean isInitialized() {
+        return initialized;
+    }
+
+    public Activity getMainActivity() {
+        return mainActivity;
+    }
+
+    public void setMainActivity(Activity mainActivity) {
+        this.mainActivity = mainActivity;
+    }
+
+    public Activity getPromotionActivity() {
+        return promotionActivity;
+    }
+
+    public void setPromotionActivity(Activity promotionActivity) {
+        this.promotionActivity = promotionActivity;
+    }
+
+    public boolean isMainActivityPaused() {
+        return mainActivityPaused;
+    }
+
+    public void setMainActivityPaused(boolean mainActivityPaused) {
+        this.mainActivityPaused = mainActivityPaused;
+    }
+
+    public boolean isPromotionActivityPaused() {
+        return promotionActivityPaused;
+    }
+
+    public void setPromotionActivityPaused(boolean promotionActivityPaused) {
+        this.promotionActivityPaused = promotionActivityPaused;
     }
 }

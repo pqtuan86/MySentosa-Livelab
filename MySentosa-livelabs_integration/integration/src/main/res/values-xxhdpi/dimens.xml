@@ -8,9 +8,11 @@
 
     <dimen name="list_view_item_title_size">20sp</dimen>
 
-    <dimen name="title_size">26sp</dimen>
+    <dimen name="title_size">20sp</dimen>
     <dimen name="campaign_title_size">21sp</dimen>
     <dimen name="header_size">22sp</dimen>
     <dimen name="description_size">16sp</dimen>
-    <dimen name="redeem_size">20sp</dimen>
+    <dimen name="redeem_size">17sp</dimen>
+    <dimen name="redeem_title_size">26sp</dimen>
+    <dimen name="redeem_message_size">17sp</dimen>
 </resources>

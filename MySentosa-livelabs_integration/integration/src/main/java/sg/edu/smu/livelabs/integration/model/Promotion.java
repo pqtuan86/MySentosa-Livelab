@@ -27,6 +27,7 @@ public class Promotion implements Serializable {
     private String merchantEmail;
     private String merchantWeb;
     private int campaignId;
+    private int serialNumber;
 
     private int width, height;
 
@@ -35,7 +36,7 @@ public class Promotion implements Serializable {
     public Promotion(int id, String title, String details, String description, String campaignName,
                      Date startTime, Date endTime,
                      URL image, String workingHours, String status, String merchantName, String merchantLocation,
-                     String merchantPhone, String merchantEmail, String merchantWeb, int campaignId) {
+                     String merchantPhone, String merchantEmail, String merchantWeb, int campaignId, int serialNumber) {
         this.id = id;
         this.title = title;
         this.details = details;
@@ -52,12 +53,16 @@ public class Promotion implements Serializable {
         this.merchantEmail = merchantEmail;
         this.merchantWeb = merchantWeb;
         this.campaignId = campaignId;
+        this.serialNumber = serialNumber;
     }
 
     public int getCampaignId(){
         return campaignId;
     }
 
+    public int getSerialNumber() {
+        return serialNumber;
+    }
 
     public String getMerchantLocation(){
         return merchantLocation;

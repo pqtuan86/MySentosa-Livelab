@@ -1,13 +1,17 @@
 package com.mysentosa.android.sg.services;
 
+import android.app.AlertDialog;
 import android.app.IntentService;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.media.RingtoneManager;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.Handler;
+import android.os.Looper;
 import android.support.v4.app.NotificationCompat;
 import android.support.v4.app.TaskStackBuilder;
 
@@ -17,6 +21,7 @@ import com.mysentosa.android.sg.R;
 import com.mysentosa.android.sg.SplashScreenActivity;
 import com.mysentosa.android.sg.receiver.GcmBroadcastReceiver;
 
+import java.util.HashMap;
 import java.util.Map;
 
 import sg.edu.smu.livelabs.integration.LiveLabsApi;
@@ -44,7 +49,7 @@ public class GcmIntentService extends IntentService {
         if (!extras.isEmpty()) {  // has effect of unparcelling Bundle
             if (GoogleCloudMessaging.MESSAGE_TYPE_MESSAGE.equals(messageType)) {
 
-                Map<String, String> map  = LiveLabsApi.getInstance().processNotification(extras);
+                Map<String, String> map  = processNotification(extras);
                 if (map != null) {
                     String message = map.get("message");
                     String id = map.get("id");
@@ -79,7 +84,8 @@ public class GcmIntentService extends IntentService {
                                         .setContentTitle("Sentosa")
                                         .setSound(alarmSound)
                                         .setVibrate(new long[]{1000, 1000, 1000, 1000, 1000})
-                                        .setContentText(message);
+                                        .setContentText(message)
+                                        .setAutoCancel(true);
 
                         mBuilder.setContentIntent(contentIntent);
 
@@ -92,5 +98,82 @@ public class GcmIntentService extends IntentService {
 
         // Release the wake lock provided by the WakefulBroadcastReceiver.
         GcmBroadcastReceiver.completeWakefulIntent(intent);
+    }
+
+    public Map<String, String> processNotification(Bundle extras) {
+        if (!LiveLabsApi.getInstance().isInitialized()) {
+            throw new RuntimeException("initialize must be invoked first.");
+        }
+
+        Map<String, String> params = new HashMap<>();
+
+
+        String type = extras.getString("type");
+        if ("LiveLabs".equals(type)) {
+            final String title = extras.getString("title");
+            final String message = extras.getString("message");
+            final String notificationId = extras.getString("id");
+
+            params.put("message", message);
+            params.put("id", notificationId);
+
+            if (LiveLabsApi.getInstance().getMainActivity() != null
+                    && !LiveLabsApi.getInstance().isMainActivityPaused()) {
+                Handler h = new Handler(Looper.getMainLooper());
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new AlertDialog.Builder(LiveLabsApi.getInstance().getMainActivity())
+                                    .setTitle(title)
+                                    .setMessage(message)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            LiveLabsApi.getInstance().notificationTracking(notificationId);
+
+                                            Intent intent = new Intent(LiveLabsApi.getInstance().getMainActivity(), PromotionsActivity.class);
+                                            LiveLabsApi.getInstance().getMainActivity().startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+                return null;
+            }
+            else if (LiveLabsApi.getInstance().getPromotionActivity() != null
+                    && !LiveLabsApi.getInstance().isPromotionActivityPaused()) {
+                Handler h = new Handler(Looper.getMainLooper());
+                h.post(new Runnable() {
+                    @Override
+                    public void run() {
+                        try {
+                            new AlertDialog.Builder(LiveLabsApi.getInstance().getPromotionActivity())
+                                    .setTitle(title)
+                                    .setMessage(message)
+                                    .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                                        public void onClick(DialogInterface dialog, int id) {
+
+                                            LiveLabsApi.getInstance().notificationTracking(notificationId);
+
+                                            Intent intent = new Intent(LiveLabsApi.getInstance().getPromotionActivity(), PromotionsActivity.class);
+                                            LiveLabsApi.getInstance().getPromotionActivity().startActivity(intent);
+                                        }
+                                    })
+                                    .show();
+                        } catch (Exception e) {
+
+                        }
+                    }
+                });
+
+                return params;
+            }
+            return params;
+        }
+        return null;
     }
 }

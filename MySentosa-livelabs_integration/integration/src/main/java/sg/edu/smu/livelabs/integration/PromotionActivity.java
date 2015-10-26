@@ -15,13 +15,17 @@ import android.view.MenuItem;
 import android.view.View;
 import android.view.Window;
 import android.widget.AdapterView;
+import android.widget.LinearLayout;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.google.zxing.integration.android.IntentIntegrator;
 import com.google.zxing.integration.android.IntentResult;
 
 import java.util.List;
+
+import javax.net.ssl.SSLHandshakeException;
 
 import sg.edu.smu.livelabs.integration.model.Promotion;
 import sg.edu.smu.livelabs.integration.promotion.PromotionDialogFragment;
@@ -35,11 +39,14 @@ import sg.edu.smu.livelabs.integration.promotion.PromotionItemAdapter;
  *
  *
  */
-public class PromotionActivity extends FragmentActivity {
+public class PromotionActivity extends FragmentActivity implements PromotionDialogFragment.PromotionDialogListener{
     public static final String TAG = "LIVELABS";
     private ListView listView;
+    private LinearLayout  noPromotionLL;
     private PromotionItemAdapter promotionItemAdapter;
     private boolean haveNetworkFault;
+    private int campaingId;
+    private ProgressBar progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -68,19 +75,20 @@ public class PromotionActivity extends FragmentActivity {
             haveNetworkFault = true;
         }
 
-//        if(haveNetworkFault){
-//            new AlertDialog.Builder(PromotionActivity.this)
-//                    .setTitle("Wifi")
-//                    .setMessage("Cannot connect to network. Please check your WIFI connection.")
-//                    .setPositiveButton("OK",  new DialogInterface.OnClickListener() {
-//                        public void onClick(DialogInterface dialog, int id) {
-//                            finish();
-//                            //finishActivity(100);
-//                        }
-//                    })
-//                    .show();
-//            return;
-//        }
+        /*
+        if(haveNetworkFault){
+            new AlertDialog.Builder(PromotionActivity.this)
+                    .setTitle("Wifi")
+                    .setMessage("Cannot connect to network. Please check your WIFI connection.")
+                    .setPositiveButton("OK",  new DialogInterface.OnClickListener() {
+                        public void onClick(DialogInterface dialog, int id) {
+                            finish();
+                            //finishActivity(100);
+                        }
+                    })
+                    .show();
+            return;
+        }*/
 
         LiveLabsApi.getInstance().onPromotionActivityCreated(this, savedInstanceState);
 
@@ -106,7 +114,7 @@ public class PromotionActivity extends FragmentActivity {
             }
         });*/
 
-
+        noPromotionLL = (LinearLayout)findViewById(R.id.no_promotion);
 
         //This stuff is to test the promotion feature
         listView = (ListView) findViewById(R.id.list_view);
@@ -114,17 +122,21 @@ public class PromotionActivity extends FragmentActivity {
         listView.setAdapter(promotionItemAdapter);
         refreshPromotions();
 
+
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Promotion p = promotionItemAdapter.getItem(position);
+                campaingId = p.getCampaignId();
 
                 LiveLabsApi.getInstance().promotionTracking(Integer.toString(p.getId()), Integer.toString(p.getCampaignId()));
 
                 PromotionDialogFragment f = PromotionDialogFragment.newInstance(p);
                 f.show(getSupportFragmentManager(), "dialog");
+
             }
         });
+
 
 
     }
@@ -134,19 +146,39 @@ public class PromotionActivity extends FragmentActivity {
     protected void onResume() {
         super.onResume();
         LiveLabsApi.getInstance().onPromotionActivityResumed(this);
-
+        System.out.println("Resume");
     }
 
     @Override
     protected void onPause() {
         super.onPause();
         LiveLabsApi.getInstance().onPromotionActivityPaused(this);
+        System.out.println("Pasue");
+    }
+
+    @Override
+    protected void onRestart() {
+        super.onRestart();
+        System.out.println("onReStart");
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        System.out.println("onStart");
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
         LiveLabsApi.getInstance().onPromtionActivityDestroyed(this);
+        System.out.println("Destory");
+    }
+
+    @Override
+    public void onPromotionDialogCanceled() {
+        findViewById(R.id.loadingPanel).setVisibility(View.VISIBLE);
+        refreshPromotions();
     }
 
     @Override
@@ -177,19 +209,37 @@ public class PromotionActivity extends FragmentActivity {
     }
 
     private void refreshPromotions() {
+
         LiveLabsApi.getInstance().getPromotions(new LiveLabsApi.PromotionCallback() {
             @Override
             public void onResult(List<Promotion> promotions) {
                 promotionItemAdapter.promotionsUpdated(promotions);
+
+                if(promotionItemAdapter.getCount() > 0)
+                {
+                    noPromotionLL.setVisibility(View.GONE);
+                    listView.setVisibility(View.VISIBLE);
+                }
+                else{
+                    noPromotionLL.setVisibility(View.VISIBLE);
+                    listView.setVisibility(View.GONE);
+                }
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
             }
 
             @Override
             public void onError(Throwable t, String message) {
-                new AlertDialog.Builder(PromotionActivity.this)
-                        .setTitle("Promotion")
-                        .setMessage("Promotion error: " + t)
-                        .setPositiveButton("OK", null)
-                        .show();
+                findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+
+                if (t instanceof SSLHandshakeException) {
+                    new AlertDialog.Builder(PromotionActivity.this)
+                            .setTitle("Promotion")
+                            .setMessage("Please connect & sign-in to the WiFi to receive the latest promotion.")
+                            .setPositiveButton("OK", null)
+                            .show();
+                }
+                noPromotionLL.setVisibility(View.VISIBLE);
+                listView.setVisibility(View.GONE);
             }
         });
     }
@@ -201,7 +251,23 @@ public class PromotionActivity extends FragmentActivity {
             if(result.getContents() == null) {
                 // Log.d("MainActivity", "Cancelled scan");
                 // Toast.makeText(this, "Cancelled", Toast.LENGTH_LONG).show();
-            } else {
+            }
+            else if(!Integer.toString(campaingId).equals(result.getContents()) ){
+
+                new AlertDialog.Builder(PromotionActivity.this)
+                        .setTitle("Redeem")
+                        .setMessage("Opps, this is not the correct QR code for this coupon. Please check with the counter.")
+                        .setPositiveButton("OK", new DialogInterface.OnClickListener() {
+                            public void onClick(DialogInterface dialog, int id) {
+                                //System.out.println("refresh");
+                                //finish();
+                                //startActivity(getIntent());
+                            }
+                        })
+                        .show();
+            }
+            else {
+
                 //Log.d("MainActivity", "Scanned");
                 //Toast.makeText(this, "Scanned: " + result.getContents(), Toast.LENGTH_LONG).show();
 
@@ -209,20 +275,30 @@ public class PromotionActivity extends FragmentActivity {
                 new LiveLabsApi.RedeemPromotionCallback() {
 
                     @Override
-                    public void onResult(String message) {
+                    public void onResult(String status, String message) {
 
-                        if(message.equals("success")) {
-                            new AlertDialog.Builder(PromotionActivity.this)
+                        if(status.equals("success")) {
+                            AlertDialog alertDialog = new AlertDialog.Builder(PromotionActivity.this)
                                     .setTitle("Redeem")
+                                    .setCancelable(false)
                                     .setMessage("You have successfully redeem this promotion")
                                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            System.out.println("refresh");
+                                            //System.out.println("refresh");
                                             finish();
                                             startActivity(getIntent());
                                         }
                                     })
                                     .show();
+
+                            alertDialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                                @Override
+                                public void onCancel(DialogInterface dialog) {
+
+                                    finish();
+                                    startActivity(getIntent());
+                                }
+                            });
                         }
                         else{
                             new AlertDialog.Builder(PromotionActivity.this)
@@ -230,7 +306,7 @@ public class PromotionActivity extends FragmentActivity {
                                     .setMessage(message)
                                     .setPositiveButton("OK", new DialogInterface.OnClickListener() {
                                         public void onClick(DialogInterface dialog, int id) {
-                                            System.out.println("refresh");
+                                            //System.out.println("refresh");
                                             finish();
                                             startActivity(getIntent());
                                         }
@@ -241,11 +317,14 @@ public class PromotionActivity extends FragmentActivity {
 
                     @Override
                     public void onError(Throwable t, String message) {
+
                         new AlertDialog.Builder(PromotionActivity.this)
                                 .setTitle("Redeem")
-                                .setMessage("Redemption Error: " + t)
+                                .setMessage("Invalid coupon. Please try to scan the QR again.")
                                 .setPositiveButton("OK", null)
                                 .show();
+
+
                     }
                 });
             }

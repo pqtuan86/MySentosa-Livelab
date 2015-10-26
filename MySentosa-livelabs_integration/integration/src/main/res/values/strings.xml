@@ -9,6 +9,8 @@
     <!-- String for promotion page -->
     <string name="merchant_info">Merchant Info</string>
     <string name="description_title">Description</string>
-    <string name="valid_date_title">Valid Date</string>
+    <string name="valid_date_title">Coupon Issue Date</string>
+
+    <string name="no_promotion">There is no promotion at this moment. Please come back after a short while.</string>
 
 </resources>

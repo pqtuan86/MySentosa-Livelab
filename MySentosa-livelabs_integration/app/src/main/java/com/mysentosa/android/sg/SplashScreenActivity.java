@@ -13,6 +13,7 @@ import android.os.Message;
 import android.util.Log;
 import android.widget.ImageView;
 import android.widget.ImageView.ScaleType;
+import android.widget.Toast;
 
 import com.crittercism.app.Crittercism;
 import com.flurry.android.FlurryAgent;
@@ -95,7 +96,9 @@ public class SplashScreenActivity extends Activity {
                     Log.d(TAG, "current RegId: " + regid);
 
                     if (regid.isEmpty()) {
-                        registerInBackground();
+                        if (SentosaUtils.isOnline(getApplicationContext())) {
+                            registerInBackground();
+                        }
                     }
                 }
 

@@ -4,6 +4,7 @@ import android.content.Context;
 import android.graphics.Bitmap;
 import android.graphics.Typeface;
 import android.graphics.drawable.Drawable;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -65,8 +66,6 @@ public class PromotionItemAdapter extends ArrayAdapter<Promotion> {
         //detailsVIew.setTypeface(tfRegular);
         Promotion promotion = getItem(position);
 
-
-
         Picasso.with(getContext()).load(promotion.getImage().toString()).memoryPolicy(MemoryPolicy.NO_CACHE).into(logoView, new com.squareup.picasso.Callback() {
             @Override
             public void onSuccess() {
@@ -81,9 +80,9 @@ public class PromotionItemAdapter extends ArrayAdapter<Promotion> {
 
             @Override
             public void onError() {
-
             }
         });
+
 
 
         titleView.setText(promotion.getTitle());
