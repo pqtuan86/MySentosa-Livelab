@@ -3,12 +3,14 @@ package sg.edu.smu.livelabs.integration.promotion;
 import android.app.Dialog;
 import android.content.Context;
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.graphics.Point;
 import android.graphics.Typeface;
 import android.graphics.drawable.ColorDrawable;
 import android.hardware.Camera;
 import android.hardware.Camera.AutoFocusCallback;
 import android.hardware.Camera.PreviewCallback;
+import android.net.Uri;
 import android.os.Bundle;
 import android.os.CountDownTimer;
 import android.os.Handler;
@@ -95,6 +97,7 @@ public class PromotionDialogFragment extends DialogFragment {
 
     private FrameLayout preview;
 
+    private TextView promotionTextCode;
     private Button redeemButton;
 
     private boolean merchantStatus;
@@ -243,6 +246,8 @@ public class PromotionDialogFragment extends DialogFragment {
         descriptionButton = (ImageView) view.findViewById(R.id.description_button);
         validDateButton = (ImageView) view.findViewById(R.id.valid_date_button);
 
+        promotionTextCode = (TextView) view.findViewById(R.id.promotion_code);
+        promotionTextCode.setTypeface(tfSemiBold);
         redeemButton = (Button) view.findViewById(R.id.redeemButton);
         redeemButton.setTypeface(tfRegular);
 
@@ -310,38 +315,52 @@ public class PromotionDialogFragment extends DialogFragment {
         }
 
 
+        if (promotion.isRegRequired() && !promotion.getStatus().toLowerCase().equals("redeemed")){
+            promotionTextCode.setText(Html.fromHtml("<b> Promo code: " + promotion.getRegDiscountCode()));
+            promotionTextCode.setVisibility(View.VISIBLE);
+            redeemButton.setText("REGISTER NOW!");
+            redeemButton.setEnabled(true);
+            redeemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    String url = String.format("%s?mac=%s&campaignId=%s&code=%s",
+                            promotion.getRegUrl(),
+                            LiveLabsApi.getInstance().macAddressSHA1,
+                            promotion.getCampaignId(),
+                            promotion.getRegDiscountCode());
+                    Intent i = new Intent(Intent.ACTION_VIEW);
+                    i.setData(Uri.parse(url));
+                    startActivity(i);
+//                    RegistrationDialogFragment f = RegistrationDialogFragment.newInstance(promotion);
+//                    f.show(getActivity().getSupportFragmentManager(), "dialog");
+                }
+            });
 
+        } else {
+            //Onclick functions
+            promotionTextCode.setVisibility(View.GONE);
+            redeemButton.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
 
-        //Onclick functions
-        redeemButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
+                    redeemButton.setText("VERIFYING");
+                    redeemButton.setEnabled(false);
+                    redeemButton.setBackgroundColor(0xFF666666);
+                    redeemButton.setTextColor(0xffffffff);
+                    preview.setVisibility(View.VISIBLE);
+                    containerView.setVisibility(View.GONE);
 
-                redeemButton.setText("VERIFYING");
-                redeemButton.setEnabled(false);
-                redeemButton.setBackgroundColor(0xFF666666);
-                redeemButton.setTextColor(0xffffffff);
-                preview.setVisibility(View.VISIBLE);
-                containerView.setVisibility(View.GONE);
-
-                //For using ZBar QR code scanner lib
-                if (barcodeScanned) {
-                    barcodeScanned = false;
-
-                    if (mCamera == null) {
-                        mCamera = getCameraInstance();
-                        mPreview = new CameraPreview(getActivity(), mCamera, previewCb, autoFocusCB);
-                        preview.addView(mPreview);
+                    //For using ZBar QR code scanner lib
+                    if (barcodeScanned) {
+                        barcodeScanned = false;
+                        mCamera.setPreviewCallback(previewCb);
+                        mCamera.startPreview();
+                        previewing = true;
+                        mCamera.autoFocus(autoFocusCB);
                     }
 
-                    mCamera.setPreviewCallback(previewCb);
-                    mCamera.startPreview();
-                    previewing = true;
-                    mCamera.autoFocus(autoFocusCB);
-                }
 
-
-                //For using ZXing QR code scanner lib
+                    //For using ZXing QR code scanner lib
 //                //result callback to PromotionActivity
 //                IntentIntegrator integrator = new IntentIntegrator(getActivity());
 //
@@ -356,8 +375,11 @@ public class PromotionDialogFragment extends DialogFragment {
 //                integrator.initiateScan(type);
 
 
-            }
-        });
+                }
+            });
+        }
+
+
 
         merchantLayout.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -441,25 +463,6 @@ public class PromotionDialogFragment extends DialogFragment {
         releaseCamera();
     }
 
-    public void onResume(){
-        super.onResume();
-        if(mCamera != null){
-            previewing = false;
-            mCamera.setPreviewCallback(null);
-            mPreview.getHolder().removeCallback(mPreview);
-            mCamera.release();
-            mCamera = null;
-        }
-        try {
-            mCamera = getCameraInstance();
-            mPreview = new CameraPreview(getActivity(), mCamera, previewCb, autoFocusCB);
-            preview.addView(mPreview);
-        }
-        catch (Exception e){
-            Log.e("MySentosa", "PromotionDialogFragment:onResume", e);
-        }
-    }
-
     /** A safe way to get an instance of the Camera object. */
     public static Camera getCameraInstance(){
         Camera c = null;
@@ -474,7 +477,6 @@ public class PromotionDialogFragment extends DialogFragment {
         if (mCamera != null) {
             previewing = false;
             mCamera.setPreviewCallback(null);
-            mPreview.getHolder().removeCallback(mPreview);
             mCamera.release();
             mCamera = null;
         }
@@ -520,15 +522,6 @@ public class PromotionDialogFragment extends DialogFragment {
             autoFocusHandler.postDelayed(doAutoFocus, 1000);
         }
     };
-
-
-
-
-
-
-
-
-
 
     private void onDialog(String data){
 
@@ -585,8 +578,6 @@ public class PromotionDialogFragment extends DialogFragment {
                         }
                     });
         }
-
-
     }
 
     private void showDialog(String message, boolean isSuccess){
@@ -640,13 +631,13 @@ public class PromotionDialogFragment extends DialogFragment {
             }
                     .start();
 
-//            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
-//                @Override
-//                public void onCancel(DialogInterface dialog) {
-//                    getActivity().finish();
-//                    startActivity(getActivity().getIntent());
-//                }
-//            });
+            dialog.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                @Override
+                public void onCancel(DialogInterface dialog) {
+                    getActivity().finish();
+                    startActivity(getActivity().getIntent());
+                }
+            });
         }
         else{
             title.setText("Redeemption Failed");
@@ -668,13 +659,12 @@ public class PromotionDialogFragment extends DialogFragment {
         });
     }
 
-
-
     @Override
     public void onCancel(DialogInterface dialog) {
         super.onCancel(dialog);
         promotionDialogListener.onPromotionDialogCanceled();
     }
+
 
 
 }

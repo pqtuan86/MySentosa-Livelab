@@ -28,6 +28,9 @@ public class Promotion implements Serializable {
     private String merchantWeb;
     private int campaignId;
     private int serialNumber;
+    private boolean regRequired;
+    private String regUrl;
+    private String regDiscountCode;
 
     private int width, height;
 
@@ -131,5 +134,29 @@ public class Promotion implements Serializable {
 
     public String getDescription(){
         return description;
+    }
+
+    public String getRegDiscountCode() {
+        return regDiscountCode;
+    }
+
+    public void setRegDiscountCode(String regDiscountCode) {
+        this.regDiscountCode = regDiscountCode;
+    }
+
+    public String getRegUrl() {
+        return regUrl;
+    }
+
+    public void setRegUrl(String regUrl) {
+        this.regUrl = regUrl;
+    }
+
+    public boolean isRegRequired() {
+        return regRequired;
+    }
+
+    public void setRegRequired(boolean regRequired) {
+        this.regRequired = regRequired;
     }
 }

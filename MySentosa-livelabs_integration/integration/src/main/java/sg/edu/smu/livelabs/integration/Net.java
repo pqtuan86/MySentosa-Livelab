@@ -14,6 +14,7 @@ import org.json.JSONObject;
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
+import java.io.OutputStream;
 import java.io.OutputStreamWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.MalformedURLException;
@@ -61,6 +62,67 @@ class Net {
                     OutputStreamWriter wr = new OutputStreamWriter(conn.getOutputStream());
                     wr.write( data );
                     wr.flush();
+
+                    // Get the server response
+                    reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));
+                    StringBuilder sb = new StringBuilder();
+                    String line = null;
+                    // Read Server Response
+                    while((line = reader.readLine()) != null)
+                    {
+                        // Append server response in string
+                        sb.append(line + "\n");
+                    }
+                    text = sb.toString();
+                } catch(Throwable ex) {
+                    t = ex;
+                } finally {
+                    try
+                    {
+                        reader.close();
+                    }
+                    catch(Exception ex) {}
+                }
+                return null;
+            }
+
+            @Override
+            protected void onPostExecute(Void aVoid) {
+                super.onPostExecute(aVoid);
+                if (t != null) {
+                    try {
+                        callback.onFailed(t);
+                    } catch (Throwable t2) {}
+                } else {
+                    try {
+                        callback.onSuccess(text);
+                    } catch (Throwable t2) {}
+                }
+            }
+        };
+        task.executeOnExecutor(AsyncTask.THREAD_POOL_EXECUTOR, (Void) null);
+    }
+
+    public static void postRaw(final String urlStr, final String param, final HttpCallback callback) {
+        AsyncTask<Void, Void, Void> task = new AsyncTask<Void, Void, Void>() {
+            private Throwable t;
+            private String text;
+
+            @Override
+            protected Void doInBackground(Void... params) {
+                BufferedReader reader=null;
+                try {
+
+                    String data = URLEncoder.encode(param, "UTF-8");
+                    // Defined URL  where to send data
+                    URL url = new URL(urlStr);
+                    URLConnection conn = url.openConnection();
+                    conn.setRequestProperty("Content-Type","application/json");
+                    conn.setDoOutput(true);
+                    OutputStream wr = conn.getOutputStream();
+                    byte[] outputBytes = param.getBytes("UTF-8");
+                    wr.write(outputBytes);
+                    wr.close();
 
                     // Get the server response
                     reader = new BufferedReader(new InputStreamReader(conn.getInputStream()));

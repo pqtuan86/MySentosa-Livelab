@@ -6,10 +6,15 @@ import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.ConnectivityManager;
+import android.net.NetworkInfo;
+import android.net.wifi.WifiInfo;
+import android.net.wifi.WifiManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
+import android.provider.Settings;
 import android.util.Log;
 import android.widget.ListView;
 
@@ -37,7 +42,10 @@ public class LiveLabsApi {
 
     private static final String DEV_BASE_URL = "https://athena.smu.edu.sg/hestia/sentosa";
     private static final String PROD_BASE_URL = "https://tyr.livelabs.smu.edu.sg/sentosa"; //"https://tyr.livelabs.smu.edu.sg/odin/sentosa"; //(https://tyr.livelabs.smu.edu.sg/odin/
+    private static final String DEV_BASE_SENTOSA_BACKEND = "https://athena.smu.edu.sg/hestia/sentosaBackend/index.php/Utilities";
+    private static final String PROD_BASE_SENTOSA_BACKEND = "https://tyr.livelabs.smu.edu.sg/sentosaBackend/index.php/Utilities";
     private static final String TAG = "LIVELABS";
+    private static final String VENDORID = "0565F790-965E-43C1-A192-55A79E03E64E";
 
     /**
      * This interface help us to pass you the promotion list after a call to {@link #getPromotions(sg.edu.smu.livelabs.integration.LiveLabsApi.PromotionCallback callback)} method.
@@ -80,6 +88,8 @@ public class LiveLabsApi {
 
     private static final LiveLabsApi instance = new LiveLabsApi();
 
+    private Context c;
+
     private boolean initialized;
     private PromotionCallback apiCallback;
     private Activity mainActivity;
@@ -87,16 +97,28 @@ public class LiveLabsApi {
 
     private String model;
 
-    private String macAddress;
-    private String macAddressSHA1;
+    private String ip; //local ip
+    private String uuid;
+    private String uuidSHA1;
+    public String macAddress;
+    public String macAddressSHA1;
+    public String sentosaIp;
     private SharedPreferences preferences;
     private String baseUrl;
+    private String backendBaseUrl;
     private SimpleDateFormat promotionDf;
+
     private boolean mainActivityPaused;
     private boolean promotionActivityPaused;
+    private boolean isMappedMacToUUID;
+    private boolean initialCheckIp;
+    private boolean isCheckUserNetworkCalling;
 
     private LiveLabsApi() {
         initialized = false;
+        isMappedMacToUUID = false;
+        initialCheckIp = false;
+        isCheckUserNetworkCalling = false;
         macAddress = null;
         promotionDf = new SimpleDateFormat("dd-MM-yyyy HH:mm:ss", Locale.ENGLISH);
     }
@@ -115,58 +137,218 @@ public class LiveLabsApi {
      * @param environment For testing use {@link #DEV}, for production use {@link #PROD}
      */
     public void initialize(Context context, String environment) {
+        c = context;
         if (initialized) {
             return;
         }
         preferences = context.getSharedPreferences("LiveLabs_Preferences", Context.MODE_PRIVATE);
         if (PROD.equals(environment)) {
             baseUrl = PROD_BASE_URL;
+            backendBaseUrl = PROD_BASE_SENTOSA_BACKEND;
         } else {
             baseUrl = DEV_BASE_URL;
-        }
-        macAddress = preferences.getString("MAC_ADDR", null);
-        if (macAddress == null) {
-            macAddress = Net.getMACAddress(context);
-            preferences.edit().putString("MAC_ADDR", macAddress).commit();
+            backendBaseUrl = DEV_BASE_SENTOSA_BACKEND;
         }
 
-        macAddressSHA1 = normalizeMac(macAddress);
-        model = Build.MODEL;
-        int version = Build.VERSION.SDK_INT;
+        int i = android.os.Build.VERSION.SDK_INT;
+        if ( android.os.Build.VERSION.SDK_INT <= Build.VERSION_CODES.LOLLIPOP_MR1){ //version below android 6
+            macAddress = preferences.getString("MAC_ADDR", null);
+            if (macAddress == null) {
+                macAddress = Net.getMACAddress(context);
+                preferences.edit().putString("MAC_ADDR", macAddress).commit();
+            }
 
-        if (macAddress == null || macAddress.isEmpty()) {
-            Log.d(TAG, "Cannot get mac address of this device: " + model);
-        } else {
-            Map<String, String> params = new HashMap<>();
-            params.put("devId", macAddressSHA1);
-            params.put("phoneModel", model);
-            params.put("osType", "android");
-            params.put("osVersion", "" + version);
-            params.put("time", "" + (System.currentTimeMillis() / 1000));
-            post("/app-initialized", params, new Net.HttpCallback() {
+            macAddressSHA1 = normalizeMac(macAddress);
+            model = Build.MODEL;
+            int version = Build.VERSION.SDK_INT;
+
+            if (macAddress == null || macAddress.isEmpty()) {
+                Log.d(TAG, "Cannot get mac address of this device: " + model);
+            } else {
+                Map<String, String> params = new HashMap<>();
+                params.put("devId", macAddressSHA1);
+                params.put("phoneModel", model);
+                params.put("osType", "android");
+                params.put("osVersion", "" + version);
+                params.put("time", "" + (System.currentTimeMillis() / 1000));
+                post("/app-initialized", params, new Net.HttpCallback() {
+                    @Override
+                    public void onSuccess(String respone) {
+                        Log.d(TAG, "Initialized:  " + respone);
+                    }
+
+                    @Override
+                    public void onFailed(Throwable t) {
+                        Log.e(TAG, "Initialized failed.", t);
+                    }
+                });
+
+                String regId = preferences.getString("REG_ID", null);
+                if (regId != null) {
+                    registerNoti(regId);
+                }
+            }
+
+            sendAppInstallTracking();
+
+            updateBackendUserInfo();
+
+            initialized = true;
+        }
+        else{ //for android 6 and above
+            //need to call m-enquiry (passing ip address of the phone) to get the mac
+            //settings.secure is use if the user doesn't have any network connection to call the m-enquiry
+            //thus, setting the macAddress with a UUID first
+            uuid = Settings.Secure.getString(context.getContentResolver(), Settings.Secure.ANDROID_ID); //UUID
+            macAddress = uuid;
+            preferences.edit().putString("MAC_ADDR", uuid).commit();
+
+            //intialize with UUID first
+            uuidSHA1 = SHA1(uuid);
+            macAddressSHA1 = uuidSHA1;
+            model = Build.MODEL;
+            int version = Build.VERSION.SDK_INT;
+
+            if (uuidSHA1 == null || uuidSHA1.isEmpty()) {
+                Log.d(TAG, "Cannot get mac address of this device: " + model);
+            } else {
+                Map<String, String> params = new HashMap<>();
+                params.put("devId", uuidSHA1);
+                params.put("phoneModel", model);
+                params.put("osType", "android");
+                params.put("osVersion", "" + version);
+                params.put("time", "" + (System.currentTimeMillis() / 1000));
+                post("/app-initialized", params, new Net.HttpCallback() {
+                    @Override
+                    public void onSuccess(String respone) {
+                        Log.d(TAG, "Initialized AV6:  " + respone);
+                    }
+
+                    @Override
+                    public void onFailed(Throwable t) {
+                        Log.e(TAG, "Initialized failed.", t);
+                    }
+                });
+
+                String regId = preferences.getString("REG_ID", null);
+                if (regId != null) {
+                    registerNoti(regId);
+                }
+            }
+
+            sendAppInstallTracking();
+
+            updateBackendUserInfo();
+
+            checkUserInSentosaNetwork();
+
+            initialized = true;
+        }
+    }
+
+    private void checkUserInSentosaNetwork(){
+        isCheckUserNetworkCalling = true;
+        ConnectivityManager connManager = (ConnectivityManager) c.getSystemService(Context.CONNECTIVITY_SERVICE);
+        NetworkInfo mWifi = connManager.getNetworkInfo(ConnectivityManager.TYPE_WIFI);
+        WifiManager wifiMan = (WifiManager) c.getSystemService(Context.WIFI_SERVICE);
+        WifiInfo wifiInf = wifiMan.getConnectionInfo();
+
+        if (mWifi.isConnected()) { //check if wifi is connected and then check if it is in sentosa network
+            int ipAddress = wifiInf.getIpAddress();
+            ip = String.format("%d.%d.%d.%d", (ipAddress & 0xff), (ipAddress >> 8 & 0xff), (ipAddress >> 16 & 0xff), (ipAddress >> 24 & 0xff)); //local ip
+
+            postURL("http://checkip.dyndns.org/", new HashMap<String, String>(), new Net.HttpCallback() { //check if current ip is within Sentosa network
                 @Override
-                public void onSuccess(String respone) {
-                    Log.d(TAG, "Initialized:  " + respone);
+                public void onSuccess(String response) {
+                    try {
+                        String[] tmp = response.split(":");
+                        if (tmp.length == 2) {//sample>> <html><head><title>Current IP Check</title></head><body>Current IP Address: 202.161.57.176</body></html>
+                            String[] tmp2 = tmp[1].split("</body>");
+                            if (tmp2.length == 2) { //sample>> 202.161.57.176</body></html>
+                                final String publicIP = tmp2[0].trim();
+                                postSentosaBackendUrl("/getIPList", new HashMap<String, String>(), false, "", new Net.HttpCallback() { //check if current ip is within Sentosa network
+                                    @Override
+                                    public void onSuccess(String respone) {
+                                        isCheckUserNetworkCalling = false;
+                                        try {
+                                            JSONArray jArray = new JSONArray(respone);
+                                            for(int i=0; i<jArray.length(); i++){
+                                                if(jArray.get(i).equals(publicIP)){
+                                                    initialCheckIp = true;
+                                                    Log.e(TAG,"PublicIP:" + publicIP);
+                                                    mapUUIDAndMac();
+                                                    break;
+                                                }
+                                            }
+                                        } catch (Exception e) {
+                                        }
+                                    }
+
+                                    @Override
+                                    public void onFailed(Throwable t) {
+                                        isCheckUserNetworkCalling = false;
+                                        initialCheckIp = true;
+                                        Log.e(TAG, "Cannot get Sentosa IP list. Will map uuid to mac later", t);
+                                    }
+                                });
+                            }
+                        }
+                    } catch (Exception e) {
+                    }
                 }
 
                 @Override
                 public void onFailed(Throwable t) {
-                    Log.e(TAG, "Initialized failed.", t);
+                    isCheckUserNetworkCalling = false;
+                    initialCheckIp = true;
+                    Log.e(TAG, "Cannot check public ip", t);
                 }
             });
-
-            String regId = preferences.getString("REG_ID", null);
-            if (regId != null) {
-                registerNoti(regId);
-            }
         }
-
-        sendAppInstallTracking();
-
-        updateBackendUserInfo();
-
-        initialized = true;
     }
+
+    private void mapUUIDAndMac(){
+        Map<String, String> params = new HashMap<>();
+        params.put("ip", ip);
+        params.put("vendorId", VENDORID);
+
+        post("/m-enquiry", params, new Net.HttpCallback() {
+            @Override
+            public void onSuccess(String response) {
+                try {
+                    JSONObject promotionJson = new JSONObject(response);
+                    String macAddressSHA1ByIp = promotionJson.getString("mac"); //mac address return is in SHA1
+                    Log.d(TAG, "MAC Address AV6:  " + macAddressSHA1ByIp);
+
+                    Map<String, String> params2 = new HashMap<>();
+                    String paramsStr = "{\"mac\":\"" + macAddressSHA1ByIp + "\", \"uuid\":\"" + uuidSHA1 + "\"}";
+                    params2.put("mac", macAddressSHA1ByIp);
+                    params2.put("uuid", uuidSHA1);
+
+                    postSentosaBackendUrl("/reportUUIDMACMapping", params2, true, paramsStr, new Net.HttpCallback() {
+                        @Override
+                        public void onSuccess(String response) {
+                            isMappedMacToUUID = true;
+                            Log.d(TAG, "UUID map to Mac");
+                        }
+
+                        @Override
+                        public void onFailed(Throwable t) {
+                            Log.e(TAG, "Cannot map uuid to mac.", t);
+                        }
+                    });
+                } catch (Exception e) {
+
+                }
+            }
+
+            @Override
+            public void onFailed(Throwable t) {
+                Log.e(TAG, "Convert IP to Mac failed.", t);
+            }
+        });
+    }
+
 
     /**
      * Once you have the GCM registration id, call this to send us the information.
@@ -221,9 +403,11 @@ public class LiveLabsApi {
             final String title = extras.getString("title");
             final String message = extras.getString("message");
             final String notificationId = extras.getString("id");
+            final String promotionId = extras.getString("promotion_id");
 
             params.put("message", message);
             params.put("id", notificationId);
+            params.put("promotion_id", promotionId);
 
             if (mainActivity != null && !mainActivityPaused) {
                 Handler h = new Handler(Looper.getMainLooper());
@@ -362,6 +546,15 @@ public class LiveLabsApi {
         if (!initialized) {
             throw new RuntimeException("initialize must be invoked first.");
         }
+
+        //for android 6 and above
+        if(initialCheckIp && !isMappedMacToUUID && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            mapUUIDAndMac();
+        }
+        else if(!isCheckUserNetworkCalling && !isMappedMacToUUID && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            checkUserInSentosaNetwork();
+        }
+
         mainActivity = activity;
         sendAppStatusTracking("start");
         mainActivityPaused = false;
@@ -376,6 +569,15 @@ public class LiveLabsApi {
         if (!initialized) {
             throw new RuntimeException("initialize must be invoked first.");
         }
+
+        //for android 6 and above
+        if(initialCheckIp && !isMappedMacToUUID && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            mapUUIDAndMac();
+        }
+        else if(!isCheckUserNetworkCalling && !isMappedMacToUUID && android.os.Build.VERSION.SDK_INT > android.os.Build.VERSION_CODES.LOLLIPOP_MR1){
+            checkUserInSentosaNetwork();
+        }
+
         mainActivityPaused = false;
         sendAppStatusTracking("foreground");
     }
@@ -411,7 +613,7 @@ public class LiveLabsApi {
             throw new RuntimeException("initialize must be invoked first.");
         }
         if (callback == null) {
-            throw  new IllegalArgumentException("callback cannot be null");
+            throw new IllegalArgumentException("callback cannot be null");
         }
         Map<String, String> params = new HashMap<>();
         params.put("devId", macAddressSHA1);
@@ -439,7 +641,18 @@ public class LiveLabsApi {
                                 promotionJson.getString("merchantPhone"), promotionJson.getString("merchantEmail"),
                                 promotionJson.getString("merchantWeb"), promotionJson.getInt("campaignId"),
                                 promotionJson.getInt("serial"));
-
+                        try {
+                            String str = promotionJson.getString("regRequired");
+                            if ("f".equals(str)) {
+                                promotion.setRegRequired(false);
+                            } else {
+                                promotion.setRegRequired(true);
+                            }
+                            promotion.setRegUrl(promotionJson.getString("regURL"));
+                            promotion.setRegDiscountCode(promotionJson.getString("regDiscountCode"));
+                        } catch (Exception e) {
+                            promotion.setRegRequired(false);
+                        }
                         promotions.add(promotion);
                     }
                 } catch (Throwable t) {
@@ -451,7 +664,7 @@ public class LiveLabsApi {
 
             @Override
             public void onFailed(Throwable t) {
-                callback.onError(t, "");
+                callback.onError(t, "Cannot parse redeem of promotion JSON.");
             }
         });
     }
@@ -496,7 +709,7 @@ public class LiveLabsApi {
 
             @Override
             public void onFailed(Throwable t) {
-                callback.onError(t, "");
+                callback.onError(t, "Cannot parse redeem of promotion JSONs.");
             }
         });
 
@@ -510,7 +723,7 @@ public class LiveLabsApi {
     public void notificationTracking(String notificationId ){
         Map<String, String> params = new HashMap<>();
         params.put("devId", macAddressSHA1);
-        params.put("notificationId", notificationId);
+        params.put("notificationId", notificationId );
         post("/notification-tracking", params, new Net.HttpCallback() {
             @Override
             public void onSuccess(String respone) {
@@ -560,11 +773,34 @@ public class LiveLabsApi {
         Net.post(buildUrl(path), params, callback);
     }
 
+    private void postURL(String path, Map<String, String> params, Net.HttpCallback callback) {
+        Net.post(path, params, callback);
+    }
+
+    private void postSentosaBackendUrl(String path, Map<String, String> params, boolean isRaw, String data, Net.HttpCallback callback) {
+        if(isRaw){
+            Net.postRaw(buildUrlBackend(path), data, callback);
+        }
+        else{
+            Net.post(buildUrlBackend(path), params, callback);
+        }
+
+    }
+
+
     private String buildUrl(String path) {
         if (path.startsWith("/")) {
             return baseUrl + path;
         } else {
             return baseUrl + "/" + path;
+        }
+    }
+
+    private String buildUrlBackend(String path) {
+        if (path.startsWith("/")) {
+            return backendBaseUrl + path;
+        } else {
+            return backendBaseUrl + "/" + path;
         }
     }
 
@@ -791,31 +1027,16 @@ public class LiveLabsApi {
         return mainActivity;
     }
 
-    public void setMainActivity(Activity mainActivity) {
-        this.mainActivity = mainActivity;
-    }
-
     public Activity getPromotionActivity() {
         return promotionActivity;
-    }
-
-    public void setPromotionActivity(Activity promotionActivity) {
-        this.promotionActivity = promotionActivity;
     }
 
     public boolean isMainActivityPaused() {
         return mainActivityPaused;
     }
 
-    public void setMainActivityPaused(boolean mainActivityPaused) {
-        this.mainActivityPaused = mainActivityPaused;
-    }
-
     public boolean isPromotionActivityPaused() {
         return promotionActivityPaused;
     }
 
-    public void setPromotionActivityPaused(boolean promotionActivityPaused) {
-        this.promotionActivityPaused = promotionActivityPaused;
-    }
 }

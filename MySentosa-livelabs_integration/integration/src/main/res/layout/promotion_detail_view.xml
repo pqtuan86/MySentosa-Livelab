@@ -451,18 +451,35 @@
                                 android:adjustViewBounds="true"
                                 android:layout_margin="7dp"/> -->
 
-                <Button
-                    android:id="@+id/redeemButton"
-                    android:layout_width="fill_parent"
+                <LinearLayout
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="REDEEM"
-                    android:textSize="@dimen/redeem_size"
-                    android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingLeft="5dp"
-                    android:paddingRight="5dp"
-                    android:textColor="#fff"
-                    android:background="#000"/>
+                    android:paddingLeft="10dp"
+                    android:paddingTop="@dimen/promotion_detail_title_top_padding">
+                    <TextView
+                        android:id="@+id/promotion_code"
+                        android:paddingTop="5dp"
+                        android:paddingBottom="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Promo Code: PROMO1234"
+                        android:textSize="@dimen/description_size"
+                        android:textColor="#3e3e3e"
+                        android:visibility="gone"/>
+                    <Button
+                        android:id="@+id/redeemButton"
+                        android:layout_width="fill_parent"
+                        android:layout_height="wrap_content"
+                        android:text="REDEEM"
+                        android:textSize="@dimen/redeem_size"
+                        android:paddingTop="5dp"
+                        android:paddingLeft="5dp"
+                        android:paddingRight="5dp"
+                        android:textColor="#fff"
+                        android:background="#000"/>
+                </LinearLayout>
+
 
 
             </LinearLayout>

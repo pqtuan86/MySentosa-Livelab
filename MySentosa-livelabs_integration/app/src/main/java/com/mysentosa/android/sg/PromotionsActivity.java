@@ -43,6 +43,8 @@ public class PromotionsActivity extends BaseActivity implements PromotionDialogF
 //    private boolean haveNetworkFault;
     private int campaingId;
     private ProgressBar progressDialog;
+    private boolean isNotification;
+    private String promotionNotiId;
 
 
     @Override
@@ -85,11 +87,12 @@ public class PromotionsActivity extends BaseActivity implements PromotionDialogF
 //        }
 
         Intent intent = getIntent();
-        boolean isNotification = intent.getBooleanExtra("Notification", false);
+        isNotification = intent.getBooleanExtra("Notification", false);
 
         if(isNotification){
-            String id = intent.getStringExtra("id");
-            LiveLabsApi.getInstance().notificationTracking(id);
+            String notiId = intent.getStringExtra("id");
+            promotionNotiId = intent.getStringExtra("promotion_id");
+            LiveLabsApi.getInstance().notificationTracking(notiId);
         }
 
         //This stuff is to test the promotion feature
@@ -137,10 +140,25 @@ public class PromotionsActivity extends BaseActivity implements PromotionDialogF
         LiveLabsApi.getInstance().getPromotions(new LiveLabsApi.PromotionCallback() {
             @Override
             public void onResult(List<Promotion> promotions) {
-                promotionItemAdapter.promotionsUpdated(promotions);
 
-                if(promotionItemAdapter.getCount() > 0)
-                {
+                if (promotions.size() > 0) {
+                    if (isNotification) {
+                        isNotification = false;
+                        Promotion notiPromotion = null;
+                        int promotionId = Integer.valueOf(promotionNotiId);
+                        for (Promotion p : promotions) {
+                            if (promotionId == p.getId()) {
+                                notiPromotion = p;
+                            }
+                        }
+                        if (notiPromotion != null) {
+                            PromotionDialogFragment f = PromotionDialogFragment.newInstance(notiPromotion);
+                            f.show(getSupportFragmentManager(), "dialog");
+                            findViewById(R.id.loadingPanel).setVisibility(View.GONE);
+                            return;
+                        }
+                    }
+                    promotionItemAdapter.promotionsUpdated(promotions);
                     noPromotion.setVisibility(View.GONE);
                     listView.setVisibility(View.VISIBLE);
                 }

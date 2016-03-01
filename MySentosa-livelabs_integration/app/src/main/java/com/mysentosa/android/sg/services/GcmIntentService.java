@@ -53,7 +53,7 @@ public class GcmIntentService extends IntentService {
                 if (map != null) {
                     String message = map.get("message");
                     String id = map.get("id");
-
+                    String promotionId = map.get("promotion_id");
                     if(message != null) {
                         Intent notifyIntent = new Intent(this, SplashScreenActivity.class);
                         notifyIntent.putExtra("NOTI_TYPE", "NewLiveLabsPromotion");
@@ -63,7 +63,7 @@ public class GcmIntentService extends IntentService {
                         Intent resultIntent = new Intent(this, PromotionsActivity.class);
                         resultIntent.putExtra("Notification", true);
                         resultIntent.putExtra("id", id);
-
+                        resultIntent.putExtra("promotion_id", promotionId);
                         // The stack builder object will contain an artificial back stack for the  started Activity.
                         // This ensures that navigating backward from the Activity leads out of
                         // your application to the Home screen.

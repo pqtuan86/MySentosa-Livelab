@@ -27,8 +27,6 @@ import com.mysentosa.android.sg.custom_views.SlidingDrawer.OnScrollListener;
 import com.mysentosa.android.sg.utils.Const;
 import com.mysentosa.android.sg.utils.Const.FlurryStrings;
 
-import sg.edu.smu.livelabs.integration.PromotionActivity;
-
 public class CustomMenu {
 
     public static Intent createNavigatingIntent(Context context, String className) {
