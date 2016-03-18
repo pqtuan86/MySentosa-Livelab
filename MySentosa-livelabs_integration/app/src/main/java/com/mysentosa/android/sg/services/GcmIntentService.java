@@ -113,9 +113,11 @@ public class GcmIntentService extends IntentService {
             final String title = extras.getString("title");
             final String message = extras.getString("message");
             final String notificationId = extras.getString("id");
+            final String promotionId = extras.getString("promotion_id");
 
             params.put("message", message);
             params.put("id", notificationId);
+            params.put("promotion_id", promotionId);
 
             if (LiveLabsApi.getInstance().getMainActivity() != null
                     && !LiveLabsApi.getInstance().isMainActivityPaused()) {
